@@ -1,108 +1,227 @@
 'use client'
 
-import { ArrowRight, ExternalLink, Heart } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ArrowRight, ExternalLink, Heart, ChevronUp, Mail, Github, Linkedin, Twitter, Code } from 'lucide-react';
+import GlassCard from '@/app/components/GlassCard';
 
 export default function Footer() {
+  const [isVisible, setIsVisible] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  // Detect when to show scroll-to-top button
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 500) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Animation on page load
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+  // Scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  // Smooth scroll to section
+  const scrollToSection = (e, sectionId) => {
+    e.preventDefault();
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // External resources with proper links
+  const resources = [
+    { name: "IEEE Sri Lanka", url: "https://ieee.lk", icon: <ExternalLink className="w-3 h-3 mr-2" /> },
+    { name: "International Olympiad in Informatics", url: "https://ioinformatics.org", icon: <ExternalLink className="w-3 h-3 mr-2" /> },
+    { name: "IEEEXtreme Global", url: "https://ieeextreme.org", icon: <ExternalLink className="w-3 h-3 mr-2" /> },
+    { name: "ICPC Official", url: "https://icpc.global", icon: <ExternalLink className="w-3 h-3 mr-2" /> },
+    { name: "Competitive Programming Resources", url: "https://cp-algorithms.com", icon: <ExternalLink className="w-3 h-3 mr-2" /> }
+  ];
+
+  // Social media links
+  const socialLinks = [
+    { name: "GitHub", url: "https://github.com/ieee-codex-sl", icon: <Github className="w-5 h-5" /> },
+    { name: "LinkedIn", url: "https://linkedin.com/company/ieee-codex-sl", icon: <Linkedin className="w-5 h-5" /> },
+    { name: "Twitter", url: "https://twitter.com/ieeecodexsl", icon: <Twitter className="w-5 h-5" /> },
+    { name: "Email", url: "mailto:contact@codex.ieee.lk", icon: <Mail className="w-5 h-5" /> }
+  ];
+
   return (
-    <footer className="py-12 bg-darkBlue-900 text-white relative overflow-hidden">
+    <footer className="pt-20 pb-10 bg-gradient-to-b from-darkBlue-900 to-darkBlue-800 text-white relative overflow-hidden">
+      {/* Scroll to top button */}
+      <button 
+        className={`fixed bottom-8 right-8 p-3 bg-blue-600 rounded-full shadow-lg z-50 text-white hover:bg-blue-500 transition-all focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-2 focus:ring-offset-darkBlue-900 ${
+          showScrollTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
+        }`}
+        onClick={scrollToTop}
+        aria-label="Scroll to top"
+      >
+        <ChevronUp className="w-5 h-5" />
+      </button>
+
+      {/* Background elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="grid-pattern absolute inset-0"></div>
       </div>
       
+      {/* Decorative code elements */}
+      <div className="absolute top-10 left-10 text-blue-600 opacity-5 transform -rotate-12">
+        <Code className="w-20 h-20" />
+      </div>
+      <div className="absolute bottom-10 right-10 text-blue-600 opacity-5 transform rotate-12">
+        <Code className="w-20 h-20" />
+      </div>
+      
+      {/* Gradient overlay at top */}
+      <div className="absolute top-0 left-0 w-full h-16 bg-gradient-to-b from-darkBlue-900 to-transparent"></div>
+      
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
-          <div>
+        <div className={`grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          {/* Branding */}
+          <div className="space-y-4">
             <div className="flex items-center mb-4">
               <span className="text-3xl font-bold text-white blue-glow-text">CodeX</span>
               <span className="ml-2 text-xs bg-blue-900 text-blue-300 px-2 py-1 rounded-md border border-blue-700">IEEE Sri Lanka</span>
             </div>
-            <p className="text-gray-400 mb-4">From logic to legacy</p>
-            <p className="text-gray-500 text-sm">
-              Building a thriving tech community through competitive programming.
+            <p className="text-gray-300 text-lg italic font-light">From logic to legacy</p>
+            <p className="text-gray-400 text-sm">
+              Building a thriving tech community through the power of competitive programming and collaboration.
             </p>
+            
+            {/* Social links */}
+            <div className="flex space-x-3 pt-2">
+              {socialLinks.map((social, index) => (
+                <a 
+                  key={index} 
+                  href={social.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  aria-label={`Follow us on ${social.name}`}
+                  className="p-2 bg-darkBlue-800 bg-opacity-60 rounded-full text-blue-400 hover:bg-blue-900 hover:text-white transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
           </div>
           
+          {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <a href="#about" className="text-gray-400 hover:text-blue-400 transition-colors flex items-center">
-                  <ArrowRight className="w-3 h-3 mr-2" />
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#competitions" className="text-gray-400 hover:text-blue-400 transition-colors flex items-center">
-                  <ArrowRight className="w-3 h-3 mr-2" />
-                  Competitions
-                </a>
-              </li>
-              <li>
-                <a href="#timeline" className="text-gray-400 hover:text-blue-400 transition-colors flex items-center">
-                  <ArrowRight className="w-3 h-3 mr-2" />
-                  Events
-                </a>
-              </li>
-              <li>
-                <a href="#team" className="text-gray-400 hover:text-blue-400 transition-colors flex items-center">
-                  <ArrowRight className="w-3 h-3 mr-2" />
-                  Our Team
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="text-gray-400 hover:text-blue-400 transition-colors flex items-center">
-                  <ArrowRight className="w-3 h-3 mr-2" />
-                  Contact
-                </a>
-              </li>
+            <h3 className="text-lg font-bold text-white mb-4 flex items-center">
+              <div className="w-1 h-4 bg-blue-500 mr-2"></div>
+              Quick Links
+            </h3>
+            <ul className="space-y-3">
+              {[
+                { name: "About Us", id: "about" },
+                { name: "Competitions", id: "competitions" },
+                { name: "Timeline", id: "timeline" },
+                { name: "Our Team", id: "team" },
+                { name: "FAQ", id: "faq" },
+                { name: "Contact", id: "contact" }
+              ].map((link, index) => (
+                <li key={index}>
+                  <a 
+                    href={`#${link.id}`} 
+                    onClick={(e) => scrollToSection(e, link.id)}
+                    className="text-gray-400 hover:text-blue-400 transition-colors flex items-center group focus:outline-none focus:text-blue-400"
+                  >
+                    <ArrowRight className="w-3 h-3 mr-2 transition-transform group-hover:translate-x-1" />
+                    {link.name}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
           
+          {/* External Resources */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Resources</h3>
-            <ul className="space-y-2">
-              <li>
-                <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors flex items-center">
-                  <ExternalLink className="w-3 h-3 mr-2" />
-                  IEEE Sri Lanka
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors flex items-center">
-                  <ExternalLink className="w-3 h-3 mr-2" />
-                  International Olympiad in Informatics
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors flex items-center">
-                  <ExternalLink className="w-3 h-3 mr-2" />
-                  IEEEXtreme Global
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors flex items-center">
-                  <ExternalLink className="w-3 h-3 mr-2" />
-                  ICPC Official
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors flex items-center">
-                  <ExternalLink className="w-3 h-3 mr-2" />
-                  Competitive Programming Resources
-                </a>
-              </li>
+            <h3 className="text-lg font-bold text-white mb-4 flex items-center">
+              <div className="w-1 h-4 bg-blue-500 mr-2"></div>
+              Resources
+            </h3>
+            <ul className="space-y-3">
+              {resources.map((resource, index) => (
+                <li key={index}>
+                  <a 
+                    href={resource.url} 
+                    className="text-gray-400 hover:text-blue-400 transition-colors flex items-center group focus:outline-none focus:text-blue-400"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {resource.icon}
+                    <span className="group-hover:underline">{resource.name}</span>
+                  </a>
+                </li>
+              ))}
             </ul>
+          </div>
+          
+          {/* Newsletter Signup */}
+          <div>
+            <h3 className="text-lg font-bold text-white mb-4 flex items-center">
+              <div className="w-1 h-4 bg-blue-500 mr-2"></div>
+              Stay Updated
+            </h3>
+            <p className="text-gray-400 text-sm mb-4">
+              Subscribe to our newsletter for the latest updates on competitions, events, and resources.
+            </p>
+            <form className="flex flex-col sm:flex-row">
+              <input 
+                type="email" 
+                placeholder="Your email address" 
+                className="bg-darkBlue-800 bg-opacity-50 border border-blue-900 p-2 rounded-lg sm:rounded-r-none text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm mb-2 sm:mb-0"
+                aria-label="Email for newsletter"
+              />
+              <button 
+                type="submit" 
+                className="bg-blue-600 hover:bg-blue-500 text-white font-medium px-4 py-2 rounded-lg sm:rounded-l-none transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              >
+                Subscribe
+              </button>
+            </form>
           </div>
         </div>
         
-        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 mb-4 md:mb-0">
-            © 2025 IEEE CodeX Sri Lanka. All rights reserved.
-          </p>
+        {/* Divider */}
+        <div className="border-t border-blue-900 my-8"></div>
+        
+        {/* Bottom section */}
+        <div className={`flex flex-col sm:flex-row justify-between items-center transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="mb-4 sm:mb-0">
+            <p className="text-gray-400 text-sm">
+              © 2025 IEEE CodeX Sri Lanka. All rights reserved.
+            </p>
+            <p className="text-gray-500 text-xs mt-1">
+              A proud initiative of the IEEE Sri Lanka Section.
+            </p>
+          </div>
+          
           <div className="flex items-center">
-            <span className="text-gray-500 mr-2">Made with</span>
-            <Heart className="w-4 h-4 text-red-500 animate-pulse" />
-            <span className="text-gray-500 ml-2">in Sri Lanka</span>
+            <span className="text-gray-400 mr-2 text-sm">Developed by</span>
+            <a 
+                href="http://hiruna.dev/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-blue-400 hover:text-blue-300 transition-colors font-medium text-sm"
+            >
+                Hiruna Gallage
+            </a>
           </div>
         </div>
       </div>
