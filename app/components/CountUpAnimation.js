@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useState, useEffect, useRef } from 'react';
 
@@ -8,89 +8,86 @@ export default function CountUpAnimation({
   prefix = '',
   suffix = '',
   easing = 'easeOutExpo',
-  delay = 0
+  delay = 0,
+  repeat = false // New prop to control re-animation
 }) {
   const [count, setCount] = useState(0);
   const elementRef = useRef(null);
   const animationRef = useRef(null);
+  const observerRef = useRef(null);
   const [hasAnimated, setHasAnimated] = useState(false);
 
   // Easing functions
   const easings = {
     linear: t => t,
-    easeInQuad: t => t * t,
-    easeOutQuad: t => t * (2 - t),
-    easeInOutQuad: t => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t,
-    easeInCubic: t => t * t * t,
-    easeOutCubic: t => (--t) * t * t + 1,
-    easeInOutCubic: t => t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1,
     easeOutExpo: t => t === 1 ? 1 : 1 - Math.pow(2, -10 * t),
-    easeInOutExpo: t => t === 0 ? 0 : t === 1 ? 1 : t < 0.5 ? Math.pow(2, 10 * (t - 0.5)) / 2 : (2 - Math.pow(2, -10 * (t - 0.5))) / 2,
   };
 
-  // Format the count for display
   const formatCount = (count) => {
-    if (Number.isInteger(count)) {
-      return count;
-    }
-    return count.toFixed(1);
+    return Number.isInteger(count) ? count : count.toFixed(1);
+  };
+
+  const startAnimation = () => {
+    let startTime = null;
+
+    const animateCount = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      const easedProgress = easings[easing](progress);
+      setCount(easedProgress * end);
+
+      if (progress < 1) {
+        animationRef.current = requestAnimationFrame(animateCount);
+      } else {
+        setCount(end);
+        if (repeat) setHasAnimated(false);
+      }
+    };
+
+    animationRef.current = requestAnimationFrame(animateCount);
   };
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated) {
-          // Start animation after delay
-          setTimeout(() => {
-            setHasAnimated(true);
-            
-            let startTime;
-            const animateCount = (timestamp) => {
-              if (!startTime) startTime = timestamp;
-              const elapsed = timestamp - startTime;
-              const progress = Math.min(elapsed / duration, 1);
-              
-              // Apply easing function
-              const easedProgress = easings[easing](progress);
-              setCount(easedProgress * end);
-              
-              if (progress < 1) {
-                animationRef.current = requestAnimationFrame(animateCount);
-              } else {
-                setCount(end); // Ensure we end at exactly the target value
-              }
-            };
-            
-            animationRef.current = requestAnimationFrame(animateCount);
-          }, delay);
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (!hasAnimated || repeat) {
+            setTimeout(() => {
+              startAnimation();
+              setHasAnimated(true);
+            }, delay);
+          }
         }
-      },
-      { threshold: 0.1 }
-    );
+      });
+    };
 
-    // Only observe if the element reference exists
+    observerRef.current = new IntersectionObserver(observerCallback, {
+      threshold: 0.5,
+    });
+
     if (elementRef.current) {
-      observer.observe(elementRef.current);
+      observerRef.current.observe(elementRef.current);
     }
 
     return () => {
-      // Cancel any ongoing animation frame
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
-      
-      // Only unobserve if the element reference exists
-      if (elementRef.current) {
-        observer.unobserve(elementRef.current);
+      if (observerRef.current && elementRef.current) {
+        observerRef.current.unobserve(elementRef.current);
       }
     };
-  }, [end, duration, easing, delay, hasAnimated]);
+  }, [end, duration, easing, delay, repeat, hasAnimated]);
 
   return (
     <span ref={elementRef} className="relative inline-block">
       {prefix}{formatCount(count)}{suffix}
-      <span className="absolute -inset-1 rounded-lg bg-blue-500 opacity-0 filter blur-sm 
-        animate-pulse-slow" style={{ animationDelay: `${delay}ms` }}></span>
+      <span
+        className="absolute -inset-1 rounded-lg bg-blue-500 opacity-0 filter blur-sm animate-pulse-slow"
+        style={{ animationDelay: `${delay}ms` }}
+      ></span>
     </span>
   );
 }
