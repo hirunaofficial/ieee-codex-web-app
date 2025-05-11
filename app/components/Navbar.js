@@ -35,26 +35,22 @@ export default function Navbar() {
 
       // Handle navbar auto-hide on scroll down
       const currentScrollPos = window.scrollY;
-      // Use function form of setState to access the most recent state values
-      setPrevScrollPos(prevPos => {
-        const isScrollingDown = currentScrollPos > prevPos && currentScrollPos > 200;
-        
-        setNavVisible(visible => {
-          if (isScrollingDown && visible) {
-            return false;
-          } else if (!isScrollingDown && !visible) {
-            return true;
-          }
-          return visible;
-        });
-        
-        return currentScrollPos;
-      });
+      const isScrollingDown = currentScrollPos > prevScrollPos && currentScrollPos > 200;
+      
+      if (isScrollingDown && navVisible) {
+        setNavVisible(false);
+        // Close mobile menu when navbar hides
+        setIsMenuOpen(false);
+      } else if (!isScrollingDown && !navVisible) {
+        setNavVisible(true);
+      }
+      
+      setPrevScrollPos(currentScrollPos);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []); // Remove dependencies to avoid infinite loop
+  }, [prevScrollPos, navVisible]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -74,74 +70,79 @@ export default function Navbar() {
         behavior: 'smooth'
       });
       
-      if (isMenuOpen) {
-        setIsMenuOpen(false);
-      }
+      // Always close the menu after clicking
+      setIsMenuOpen(false);
     }
   };
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      scrolled ? 'glass-nav py-3' : 'bg-transparent py-5'
-    } ${navVisible ? 'translate-y-0' : '-translate-y-full'}`}>
-      <div className="container mx-auto px-4 flex justify-between items-center">
-        <div className="flex items-center">
-          <span className="text-2xl font-bold text-white blue-glow-text">CodeX</span>
-          <span className="ml-2 text-xs bg-blue-600 bg-opacity-20 text-blue-300 px-2 py-1 rounded-md border border-blue-500 border-opacity-30">IEEE Sri Lanka</span>
+    <div className="fixed w-full z-50">
+      <nav className={`w-full transition-all duration-300 ${
+        scrolled ? 'glass-nav py-3' : 'bg-transparent py-5'
+      } ${navVisible ? 'translate-y-0' : '-translate-y-full'}`}>
+        <div className="container mx-auto px-4 flex justify-between items-center">
+          <div className="flex items-center">
+            <span className="text-2xl font-bold text-white blue-glow-text">CodeX</span>
+            <span className="ml-2 text-xs bg-blue-600 bg-opacity-20 text-blue-300 px-2 py-1 rounded-md border border-blue-500 border-opacity-30">IEEE Sri Lanka</span>
+          </div>
+          
+          {/* Mobile menu button */}
+          <button 
+            className="md:hidden p-2 rounded-md hover:bg-darkBlue-700 transition-colors"
+            onClick={toggleMenu}
+            aria-label="Toggle menu"
+            aria-expanded={isMenuOpen}
+          >
+            {isMenuOpen ? (
+              <X className="h-6 w-6 text-white" />
+            ) : (
+              <Menu className="h-6 w-6 text-white" />
+            )}
+          </button>
+          
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex space-x-8">
+            {['about', 'competitions', 'timeline', 'team', 'faq', 'contact'].map((section) => (
+              <button
+                key={section}
+                className={`text-sm font-medium transition-all relative hover:text-blue-400 ${
+                  activeSection === section ? 'text-blue-400' : 'text-gray-300'
+                } focus:outline-none`}
+                onClick={() => scrollToSection(section)}
+              >
+                {section.charAt(0).toUpperCase() + section.slice(1)}
+                <span 
+                  className={`absolute bottom-0 left-0 w-full h-0.5 bg-blue-500 transform scale-x-0 transition-transform origin-left duration-300 ${
+                    activeSection === section ? 'scale-x-100' : ''
+                  }`}
+                ></span>
+              </button>
+            ))}
+          </div>
         </div>
-        
-        {/* Mobile menu button */}
-        <button 
-          className="md:hidden p-2 rounded-md hover:bg-darkBlue-700 transition-colors"
-          onClick={toggleMenu}
-          aria-label="Toggle menu"
-        >
-          {isMenuOpen ? (
-            <X className="h-6 w-6 text-white" />
-          ) : (
-            <Menu className="h-6 w-6 text-white" />
-          )}
-        </button>
-        
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex space-x-8">
+      </nav>
+      
+      {/* Mobile menu - separated from the nav to avoid translation issues */}
+      <div 
+        className={`md:hidden glass-card border-t border-blue-900 absolute w-full z-40 transition-all duration-300 ${
+          isMenuOpen && navVisible ? 'opacity-100 visible' : 'opacity-0 invisible'
+        }`}
+        aria-hidden={!isMenuOpen}
+      >
+        <div className="py-2">
           {['about', 'competitions', 'timeline', 'team', 'faq', 'contact'].map((section) => (
             <button
               key={section}
-              className={`text-sm font-medium transition-all relative hover:text-blue-400 ${
-                activeSection === section ? 'text-blue-400' : 'text-gray-300'
+              className={`block w-full text-left px-4 py-3 text-sm font-medium hover:bg-darkBlue-700 transition-colors ${
+                activeSection === section ? 'text-blue-400 bg-darkBlue-800' : 'text-gray-300'
               } focus:outline-none`}
               onClick={() => scrollToSection(section)}
             >
               {section.charAt(0).toUpperCase() + section.slice(1)}
-              <span 
-                className={`absolute bottom-0 left-0 w-full h-0.5 bg-blue-500 transform scale-x-0 transition-transform origin-left duration-300 ${
-                  activeSection === section ? 'scale-x-100' : ''
-                }`}
-              ></span>
             </button>
           ))}
         </div>
       </div>
-      
-      {/* Mobile menu */}
-      <div 
-        className={`md:hidden glass-card mt-2 border-t border-blue-900 transform transition-all duration-300 ${
-          isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-5 pointer-events-none'
-        }`}
-      >
-        {['about', 'competitions', 'timeline', 'team', 'faq', 'contact'].map((section) => (
-          <button
-            key={section}
-            className={`block w-full text-left px-4 py-3 text-sm font-medium hover:bg-darkBlue-700 transition-colors ${
-              activeSection === section ? 'text-blue-400 bg-darkBlue-800' : 'text-gray-300'
-            } focus:outline-none`}
-            onClick={() => scrollToSection(section)}
-          >
-            {section.charAt(0).toUpperCase() + section.slice(1)}
-          </button>
-        ))}
-      </div>
-    </nav>
+    </div>
   );
 }
