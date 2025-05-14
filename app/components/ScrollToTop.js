@@ -9,7 +9,7 @@ export default function ScrollToTopButton() {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
+      if (window.scrollY > 300) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
@@ -25,15 +25,11 @@ export default function ScrollToTopButton() {
     setIsAnimating(true);
     setTimeout(() => setIsAnimating(false), 500);
     
-    // Custom scroll animation
-    const scrollStep = -window.scrollY / 25;
-    const scrollInterval = setInterval(() => {
-      if (window.scrollY !== 0) {
-        window.scrollBy(0, scrollStep);
-      } else {
-        clearInterval(scrollInterval);
-      }
-    }, 10);
+    // Better scroll animation with smooth behavior
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   };
 
   return (
