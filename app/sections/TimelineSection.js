@@ -10,7 +10,6 @@ export default function TimelineSection() {
   const [isVisible, setIsVisible] = useState(false);
   const [expandedEvent, setExpandedEvent] = useState(null);
   const timelineRef = useRef(null);
-  const isTodayVisible = useRef(false);
   
   // Calculate current date for timeline indicator
   const currentDate = new Date();
@@ -82,75 +81,120 @@ export default function TimelineSection() {
     setExpandedEvent(expandedEvent === index ? null : index);
   };
 
-  // Enhanced events data with status and icons
+  // Updated events data with corrected timeline and status
   const events = [
     { 
-      date: "February 13, 2025", 
-      title: "Registrations Open for NOI 2025", 
-      description: "Begin your journey by registering for the National Olympiad in Informatics.", 
-      category: "noi",
-      status: "future",
-      icon: <Calendar className="h-5 w-5" />,
-      detailedInfo: "Registration is open to all secondary school students across Sri Lanka. The registration process includes creating an account, submitting basic information, and confirming your school participation."
-    },
-    { 
-      date: "March 31, 2025", 
-      title: "Registrations Close for NOI 2025", 
-      description: "Last chance to secure your spot in the competition!", 
-      category: "noi",
-      status: "future",
-      icon: <Calendar className="h-5 w-5" />,
-      detailedInfo: "All registrations must be completed by 11:59 PM. Late registrations will not be accepted under any circumstances, so be sure to complete your application well before the deadline."
-    },
-    { 
-      date: "April 5, 2025", 
-      title: "Qualifier Contest for NOI 2025", 
-      description: "Online qualifier contest to select students for NOI 2025.", 
-      category: "noi",
-      status: "future",
-      icon: <Code className="h-5 w-5" />,
-      detailedInfo: "The qualifier contest will be held online. It will consist of 5-8 problems of varying difficulty levels, with a total duration of 3 hours. Top performers will qualify for the national finals."
-    },
-    { 
-      date: "May 3-4, 2025", 
-      title: "NOI 2025", 
-      description: "The National Olympiad in Informatics competition days.", 
-      category: "noi",
-      status: "future",
-      icon: <Trophy className="h-5 w-5" />,
-      detailedInfo: "The National Olympiad in Informatics will be a two-day competition held at a central venue in Colombo. Participants will solve algorithmic problems using C++, Java, or Python. Gold, silver, and bronze medals will be awarded to top performers."
-    },
-    { 
-      date: "May - July 2025", 
-      title: "Hands-on Training Session Series", 
-      description: "Sessions for school students and undergraduates to improve coding skills.", 
-      category: "training",
+      date: "June 28, 2025", 
+      title: "Session 1: Introduction to Competitive Programming", 
+      description: "Kickstart your journey into the world of competitive programming.", 
+      category: "sessions",
       status: "future",
       icon: <BookOpen className="h-5 w-5" />,
-      detailedInfo: "Weekly training sessions covering algorithms, data structures, problem-solving techniques, and competitive programming strategies. Sessions will be conducted both online and in-person at selected venues across Sri Lanka."
+      detailedInfo: "Learn what competitive programming is, why it matters, and how to get started effectively. This foundational session sets the stage for your entire learning journey."
     },
     { 
-      date: "July 27 - August 3, 2025", 
-      title: "IOI 2025", 
-      description: "Sri Lankan team competes at the International Olympiad in Informatics in Bolivia.", 
-      category: "noi",
+      date: "July 5, 2025", 
+      title: "Session 2: Time and Space Complexity", 
+      description: "Understanding algorithm efficiency through complexity analysis.", 
+      category: "sessions",
       status: "future",
-      icon: <Trophy className="h-5 w-5" />,
-      detailedInfo: "The top four performers from NOI 2025 will represent Sri Lanka at the International Olympiad in Informatics in Bolivia. The team will be accompanied by team leaders who will provide guidance and support throughout the competition."
+      icon: <BookOpen className="h-5 w-5" />,
+      detailedInfo: "Master the fundamental concepts of analyzing algorithm performance, a crucial skill for competitive programming success."
     },
     { 
-      date: "July - August 2025", 
-      title: "IEEEXtreme 19.0 Promotions", 
-      description: "Awareness sessions, registrations, and webinars.", 
-      category: "ieeextreme",
+      date: "July 12, 2025", 
+      title: "Session 3: Arrays and Prefix Sums", 
+      description: "Learn to manipulate arrays efficiently with prefix sum techniques.", 
+      category: "sessions",
       status: "future",
-      icon: <Users className="h-5 w-5" />,
-      detailedInfo: "Information sessions at universities and IEEE Student Branches across Sri Lanka to promote participation in IEEEXtreme 19.0. Registration assistance and team formation guidance will be provided."
+      icon: <BookOpen className="h-5 w-5" />,
+      detailedInfo: "Explore array manipulation techniques and leverage prefix sums to solve range query problems with optimal efficiency."
+    },
+    { 
+      date: "July 19, 2025", 
+      title: "Session 4: Sorting Algorithms", 
+      description: "Dive into essential sorting algorithms and their applications.", 
+      category: "sessions",
+      status: "future",
+      icon: <BookOpen className="h-5 w-5" />,
+      detailedInfo: "Understanding sorting algorithms, their logic, and real-world applications in competitive coding scenarios."
+    },
+    { 
+      date: "July 26, 2025", 
+      title: "Session 5: Two-Pointer Techniques", 
+      description: "Master the two-pointer technique for array problems.", 
+      category: "sessions",
+      status: "future",
+      icon: <BookOpen className="h-5 w-5" />,
+      detailedInfo: "Learn to solve array problems with reduced complexity using smart two-pointer logic and implementations."
+    },
+    { 
+      date: "August 2, 2025", 
+      title: "Session 6: Binary Search", 
+      description: "Discover the power of binary search beyond simple element finding.", 
+      category: "sessions",
+      status: "future",
+      icon: <BookOpen className="h-5 w-5" />,
+      detailedInfo: "Apply binary search techniques to solve complex optimization and search problems efficiently."
+    },
+    { 
+      date: "August 9, 2025", 
+      title: "Session 7: Greedy Algorithms", 
+      description: "Learn to make optimal choices at each step with greedy methods.", 
+      category: "sessions",
+      status: "future",
+      icon: <BookOpen className="h-5 w-5" />,
+      detailedInfo: "Build intuition for solving problems using greedy approaches and understand when they provide optimal solutions."
+    },
+    { 
+      date: "August 16, 2025", 
+      title: "Session 8: Recursion and Backtracking", 
+      description: "Tackle problems with recursive solutions and backtracking.", 
+      category: "sessions",
+      status: "future",
+      icon: <BookOpen className="h-5 w-5" />,
+      detailedInfo: "Explore the power of backtracking in decision-making scenarios and master recursive problem-solving approaches."
+    },
+    { 
+      date: "August 23, 2025", 
+      title: "Session 9: Dynamic Programming (Part I)", 
+      description: "Introduction to dynamic programming fundamentals.", 
+      category: "sessions",
+      status: "future",
+      icon: <BookOpen className="h-5 w-5" />,
+      detailedInfo: "Get introduced to dynamic programming, breaking problems into subproblems, and building efficient solutions."
+    },
+    { 
+      date: "August 30, 2025", 
+      title: "Session 10: Dynamic Programming (Part II)", 
+      description: "Advanced DP techniques with memoization and tabulation.", 
+      category: "sessions",
+      status: "future",
+      icon: <BookOpen className="h-5 w-5" />,
+      detailedInfo: "Dive deeper into DP techniques with memoization, tabulation, and advanced problem types and optimization strategies."
+    },
+    { 
+      date: "September 6, 2025", 
+      title: "Session 11: Graph Theory and Traversals", 
+      description: "Learn graph representation and traversal algorithms.", 
+      category: "sessions",
+      status: "future",
+      icon: <BookOpen className="h-5 w-5" />,
+      detailedInfo: "Master graph representation techniques and perform traversals like BFS and DFS to solve complex graph problems."
+    },
+    { 
+      date: "September 13, 2025", 
+      title: "Session 12: Trees and Disjoint Set Union (DSU)", 
+      description: "Understand tree structures and DSU for union-find problems.", 
+      category: "sessions",
+      status: "future",
+      icon: <BookOpen className="h-5 w-5" />,
+      detailedInfo: "Master tree data structures and use the Disjoint Set Union technique for optimizing union-find operations."
     },
     { 
       date: "October 2025", 
       title: "IEEEXtreme 19.0", 
-      description: "24-hour global coding challenge!", 
+      description: "24-hour global coding challenge for IEEE student members.", 
       category: "ieeextreme",
       status: "future",
       icon: <Code className="h-5 w-5" />,
@@ -166,13 +210,22 @@ export default function TimelineSection() {
       detailedInfo: "University teams will compete to represent Sri Lanka at the ICPC Asia Regional Contest. Teams consist of three undergraduate students. The selection contest will be held over 5 hours with challenging algorithmic problems."
     },
     { 
+      date: "February 2026", 
+      title: "NOI 2026 Registration Opens", 
+      description: "Registration begins for the next National Olympiad in Informatics.", 
+      category: "noi",
+      status: "future",
+      icon: <Trophy className="h-5 w-5" />,
+      detailedInfo: "Begin your journey by registering for the National Olympiad in Informatics 2026. Registration is open to all secondary school students across Sri Lanka."
+    },
+    { 
       date: "March 2026", 
-      title: "Award Ceremony", 
-      description: "Recognizing outstanding performers in NOI, IEEEXtreme, and ICPC.", 
+      title: "Annual Awards Ceremony", 
+      description: "Recognizing outstanding performers across all competitions and sessions.", 
       category: "all",
       status: "future",
       icon: <Award className="h-5 w-5" />,
-      detailedInfo: "The annual award ceremony will recognize and celebrate outstanding achievements across all CodeX competitions. Awards will be presented to top performers, and scholarships and internship opportunities will be announced for exceptional participants."
+      detailedInfo: "The annual award ceremony will recognize and celebrate outstanding achievements across all CodeX competitions and training sessions. Awards will be presented to top performers, and scholarships and internship opportunities will be announced."
     }
   ];
 
@@ -182,6 +235,11 @@ export default function TimelineSection() {
       label: 'All Events', 
       color: 'green-400',
       icon: <Filter className="h-4 w-4 mr-1.5" />
+    },
+    sessions: { 
+      label: 'Training Sessions', 
+      color: 'green-400',
+      icon: <BookOpen className="h-4 w-4 mr-1.5" />
     },
     noi: { 
       label: 'NOI', 
@@ -197,11 +255,6 @@ export default function TimelineSection() {
       label: 'ICPC', 
       color: 'green-400',
       icon: <Trophy className="h-4 w-4 mr-1.5" />
-    },
-    training: { 
-      label: 'Training', 
-      color: 'green-400',
-      icon: <BookOpen className="h-4 w-4 mr-1.5" />
     }
   };
 
@@ -256,7 +309,7 @@ export default function TimelineSection() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4 blue-glow-text">Event Timeline</h2>
           <div className="w-16 h-1 bg-blue-500 mx-auto mb-6"></div>
           <p className="text-lg text-gray-300 mb-6">
-            Key dates and milestones for our upcoming events and competitions
+            Key dates and milestones for our training sessions and competitions
           </p>
           
           {/* Current date indicator */}
@@ -512,7 +565,7 @@ export default function TimelineSection() {
               </div>
               <div className="text-left">
                 <h4 className="text-sm font-medium text-white">Academic Year</h4>
-                <p className="text-blue-300 text-sm">2024-2025</p>
+                <p className="text-blue-300 text-sm">2025-2026</p>
               </div>
             </div>
             <div className="bg-darkBlue-800 bg-opacity-40 rounded-lg p-4 flex items-center">
@@ -521,7 +574,7 @@ export default function TimelineSection() {
               </div>
               <div className="text-left">
                 <h4 className="text-sm font-medium text-white">Timeline Updates</h4>
-                <p className="text-blue-300 text-sm">Last updated May 2, 2025</p>
+                <p className="text-blue-300 text-sm">Last updated December 2024</p>
               </div>
             </div>
           </div>
