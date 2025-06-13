@@ -5,6 +5,7 @@ import Navbar from '@/app/components/Navbar';
 import ScrollToTopButton from '@/app/components/ScrollToTop';
 import HeroSection from '@/app/sections/HeroSection';
 import AboutSection from '@/app/sections/AboutSection';
+import SessionsSection from '@/app/sections/SessionsSection';
 import CompetitionsSection from '@/app/sections/CompetitionsSection';
 import TimelineSection from '@/app/sections/TimelineSection';
 import RegistrationCTA from '@/app/sections/RegistrationCTA';
@@ -24,6 +25,9 @@ export default function Home() {
 
       {/* About Section */}
       <AboutSection />
+
+      {/* Sessions Section */}
+      <SessionsSection />
 
       {/* Competitions Section */}
       <CompetitionsSection />
