@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { ArrowRight, ExternalLink, Heart, ChevronUp, Mail, Github, Linkedin, Twitter, Code } from 'lucide-react';
+import { ArrowRight, ExternalLink, ChevronUp, Github, Linkedin, Twitter, Code } from 'lucide-react';
+import Image from 'next/image';
 import GlassCard from '@/app/components/GlassCard';
 
 export default function Footer() {
@@ -57,8 +58,7 @@ export default function Footer() {
   const socialLinks = [
     { name: "GitHub", url: "https://github.com/ieee-codex-sl", icon: <Github className="w-5 h-5" /> },
     { name: "LinkedIn", url: "https://linkedin.com/company/ieee-codex-sl", icon: <Linkedin className="w-5 h-5" /> },
-    { name: "Twitter", url: "https://twitter.com/ieeecodexsl", icon: <Twitter className="w-5 h-5" /> },
-    { name: "Email", url: "mailto:contact@codex.ieee.lk", icon: <Mail className="w-5 h-5" /> }
+    { name: "Twitter", url: "https://twitter.com/ieeecodexsl", icon: <Twitter className="w-5 h-5" /> }
   ];
 
   return (
@@ -91,12 +91,32 @@ export default function Footer() {
       <div className="absolute top-0 left-0 w-full h-16 bg-gradient-to-b from-darkBlue-900 to-transparent"></div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className={`grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           {/* Branding */}
           <div className="space-y-4">
-            <div className="flex items-center mb-4">
-              <span className="text-3xl font-bold text-white blue-glow-text">CodeX</span>
-              <span className="ml-2 text-xs bg-blue-900 text-blue-300 px-2 py-1 rounded-md border border-blue-700">IEEE Sri Lanka</span>
+            <div className="flex items-center gap-3 mb-4">
+              {/* CodeX Text Logo */}
+              <Image 
+                src="/images/codex-text.png" 
+                alt="CodeX" 
+                width={120} 
+                height={32} 
+                className="drop-shadow-lg"
+                style={{
+                  filter: 'drop-shadow(0 0 8px rgba(59, 130, 246, 0.5))'
+                }}
+              />
+              
+              {/* IEEE Logo with white background */}
+              <div className="bg-white rounded-md px-2 py-1 flex items-center shadow-sm">
+                <Image 
+                  src="/images/ieee.png" 
+                  alt="IEEE Sri Lanka" 
+                  width={60} 
+                  height={20} 
+                  className="object-contain"
+                />
+              </div>
             </div>
             <p className="text-gray-300 text-lg italic font-light">From logic to legacy</p>
             <p className="text-gray-400 text-sm">
@@ -129,6 +149,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {[
                 { name: "About Us", id: "about" },
+                { name: "Sessions", id: "sessions" },
                 { name: "Competitions", id: "competitions" },
                 { name: "Timeline", id: "timeline" },
                 { name: "Our Team", id: "team" },
@@ -170,31 +191,6 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
-          
-          {/* Newsletter Signup */}
-          <div>
-            <h3 className="text-lg font-bold text-white mb-4 flex items-center">
-              <div className="w-1 h-4 bg-blue-500 mr-2"></div>
-              Stay Updated
-            </h3>
-            <p className="text-gray-400 text-sm mb-4">
-              Subscribe to our newsletter for the latest updates on competitions, events, and resources.
-            </p>
-            <form className="flex flex-col sm:flex-row">
-              <input 
-                type="email" 
-                placeholder="Your email address" 
-                className="bg-darkBlue-800 bg-opacity-50 border border-blue-900 p-2 rounded-lg sm:rounded-r-none text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm mb-2 sm:mb-0"
-                aria-label="Email for newsletter"
-              />
-              <button 
-                type="submit" 
-                className="bg-blue-600 hover:bg-blue-500 text-white font-medium px-4 py-2 rounded-lg sm:rounded-l-none transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-              >
-                Subscribe
-              </button>
-            </form>
           </div>
         </div>
         

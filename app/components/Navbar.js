@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState('hero');
@@ -13,7 +14,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       // Handle active section tracking
-      const sections = ['hero', 'about', 'competitions', 'timeline', 'team', 'faq', 'contact'];
+      const sections = ['hero', 'about', 'sessions', 'competitions', 'timeline', 'team', 'faq', 'contact'];
       
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -81,9 +82,20 @@ export default function Navbar() {
         scrolled ? 'glass-nav py-3' : 'bg-transparent py-5'
       } ${navVisible ? 'translate-y-0' : '-translate-y-full'}`}>
         <div className="container mx-auto px-4 flex justify-between items-center">
-          <div className="flex items-center">
-            <span className="text-2xl font-bold text-white blue-glow-text">CodeX</span>
-            <span className="ml-2 text-xs bg-blue-600 bg-opacity-20 text-blue-300 px-2 py-1 rounded-md border border-blue-500 border-opacity-30">IEEE Sri Lanka</span>
+          {/* Logo Section */}
+          <div className="flex items-center gap-3">
+            {/* CodeX Text Logo */}
+            <Image 
+              src="/images/codex-text.png" 
+              alt="CodeX" 
+              width={120} 
+              height={32} 
+              className="drop-shadow-lg"
+              style={{
+                filter: 'drop-shadow(0 0 8px rgba(59, 130, 246, 0.5))'
+              }}
+            />
+            
           </div>
           
           {/* Mobile menu button */}
@@ -102,7 +114,7 @@ export default function Navbar() {
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
-            {['about', 'competitions', 'timeline', 'team', 'faq', 'contact'].map((section) => (
+            {['about', 'sessions', 'competitions', 'timeline', 'team', 'faq', 'contact'].map((section) => (
               <button
                 key={section}
                 className={`text-sm font-medium transition-all relative hover:text-blue-400 ${
@@ -110,7 +122,7 @@ export default function Navbar() {
                 } focus:outline-none`}
                 onClick={() => scrollToSection(section)}
               >
-                {section.charAt(0).toUpperCase() + section.slice(1)}
+                {section === 'sessions' ? 'Sessions' : section.charAt(0).toUpperCase() + section.slice(1)}
                 <span 
                   className={`absolute bottom-0 left-0 w-full h-0.5 bg-blue-500 transform scale-x-0 transition-transform origin-left duration-300 ${
                     activeSection === section ? 'scale-x-100' : ''
@@ -130,7 +142,7 @@ export default function Navbar() {
         aria-hidden={!isMenuOpen}
       >
         <div className="py-2">
-          {['about', 'competitions', 'timeline', 'team', 'faq', 'contact'].map((section) => (
+          {['about', 'sessions', 'competitions', 'timeline', 'team', 'faq', 'contact'].map((section) => (
             <button
               key={section}
               className={`block w-full text-left px-4 py-3 text-sm font-medium hover:bg-darkBlue-700 transition-colors ${
@@ -138,7 +150,7 @@ export default function Navbar() {
               } focus:outline-none`}
               onClick={() => scrollToSection(section)}
             >
-              {section.charAt(0).toUpperCase() + section.slice(1)}
+              {section === 'sessions' ? 'Sessions' : section.charAt(0).toUpperCase() + section.slice(1)}
             </button>
           ))}
         </div>
