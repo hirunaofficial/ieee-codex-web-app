@@ -1,10 +1,9 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { Trophy, Code, Users, Calendar, ExternalLink } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 import ParallaxEffect from '@/app/components/ParallaxEffect';
 import GlassCard from '@/app/components/GlassCard';
-import Image from 'next/image';
 
 export default function CompetitionsSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -29,24 +28,18 @@ export default function CompetitionsSection() {
       name: "National Olympiad in Informatics (NOI)",
       description: "An annual algorithmic programming contest to select the national team for the International Olympiad in Informatics (IOI). Participants tackle complex computational problems requiring algorithmic thinking and coding skills.",
       timeline: "February to June 2025",
-      icon: <Trophy className="h-10 w-10 text-blue-400" />,
-      image: "/images/noi.png",
       eligibility: "Open to all Sri Lankan school students"
     },
     {
       name: "IEEEXtreme 19.0",
       description: "A global 24-hour hackathon where university teams compete in algorithm-based programming challenges. Develop skills in rapid problem-solving and collaborative coding under time pressure.",
       timeline: "July to November 2025",
-      icon: <Code className="h-10 w-10 text-blue-400" />,
-      image: "/images/ieeextreme.png",
       eligibility: "IEEE undergraduate and graduate members"
     },
     {
       name: "International Collegiate Programming Contest (ICPC)",
       description: "The world's largest algorithmic competition for university students. Teams of three compete to solve complex real-world problems with elegant solutions under strict time constraints.",
       timeline: "July to November 2025",
-      icon: <Users className="h-10 w-10 text-blue-400" />,
-      image: "/images/icpc.png",
       eligibility: "University students under 24 years of age"
     }
   ];
@@ -59,11 +52,11 @@ export default function CompetitionsSection() {
       
       <div className="container mx-auto px-4 relative z-10">
         <div className={`max-w-3xl mx-auto text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <span className="text-xs bg-blue-600 bg-opacity-20 text-blue-300 px-3 py-1 rounded-full border border-blue-500 border-opacity-30 mb-4 inline-block">COMPETITIONS</span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 blue-glow-text">Our Competitions</h2>
+          <span className="text-xs bg-blue-600 bg-opacity-20 text-blue-300 px-3 py-1 rounded-full border border-blue-500 border-opacity-30 mb-4 inline-block">HOSTING</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 blue-glow-text">Hosting Competitions</h2>
           <div className="w-16 h-1 bg-blue-500 mx-auto mb-6"></div>
           <p className="text-lg text-gray-300">
-            Challenging contests that develop problem-solving skills and algorithmic thinking
+            Major competitive programming events we facilitate and support
           </p>
         </div>
 
@@ -79,27 +72,14 @@ export default function CompetitionsSection() {
                   hoverEffect="3d"
                   glowIntensity="medium"
                 >
+                  {/* Competition Title Area */}
                   <div className="mb-6 flex justify-center">
                     <div className="w-16 h-16 rounded-full bg-blue-900 bg-opacity-70 flex items-center justify-center blue-glow-subtle">
-                      {competition.icon}
+                      <span className="text-blue-400 font-bold text-2xl">{index + 1}</span>
                     </div>
                   </div>
 
-                  {/* Competition Image with improved container */}
-                  <div className="mb-6 relative">
-                    <div className="absolute inset-0 bg-blue-600 opacity-20 blur-xl rounded-lg"></div>
-                    <div className="relative flex justify-center overflow-hidden rounded-lg border border-blue-500 border-opacity-30">
-                      <Image 
-                        src={competition.image} 
-                        alt={competition.name} 
-                        width={180} 
-                        height={120} 
-                        className="object-cover hover:scale-105 transition-transform duration-700"
-                      />
-                    </div>
-                  </div>
-
-                  <h3 className="text-xl font-bold mb-3 text-center text-blue-300">{competition.name}</h3>
+                  <h3 className="text-xl font-bold mb-3 text-center text-blue-300 leading-tight">{competition.name}</h3>
                   <p className="text-gray-300 mb-6 text-base leading-relaxed flex-grow">{competition.description}</p>
                   
                   {/* Competition details */}
@@ -109,7 +89,7 @@ export default function CompetitionsSection() {
                       <span className="text-sm">{competition.timeline}</span>
                     </div>
                     
-                    {/* Eligibility tag styled like in the screenshot */}
+                    {/* Eligibility tag */}
                     <div className="bg-blue-600 bg-opacity-20 text-blue-300 px-4 py-2 rounded-full border border-blue-500 border-opacity-30 text-sm text-center">
                       {competition.eligibility}
                     </div>
@@ -133,22 +113,9 @@ export default function CompetitionsSection() {
           ))}
         </div>
         
-        {/* Call to action */}
+        {/* Updated call to action */}
         <div className={`mt-16 text-center transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <a 
-            href="#contact" 
-            className="inline-flex items-center px-8 py-4 bg-blue-600 text-white font-medium rounded-lg blue-glow hover:bg-blue-700 transition-all hover:scale-105 group"
-            onClick={(e) => {
-              e.preventDefault();
-              document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-            }}
-            aria-label="Contact us about competitions"
-          >
-            Register for Competitions
-            <ExternalLink className="ml-2 h-5 w-5 transform transition-transform group-hover:translate-x-1" />
-          </a>
-          
-          <p className="mt-4 text-sm text-gray-400">
+          <p className="text-gray-400">
             Have questions about our competitions? <a href="#faq" className="text-blue-400 hover:text-blue-300 transition-colors" onClick={(e) => {
               e.preventDefault();
               document.getElementById('faq').scrollIntoView({ behavior: 'smooth' });

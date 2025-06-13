@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import GlassCard from '@/app/components/GlassCard';
-import { Code, Trophy, Book, Users, ExternalLink } from 'lucide-react';
+import { ExternalLink, ArrowRight, BookOpen, Trophy } from 'lucide-react';
+import Image from 'next/image';
 
 export default function AboutSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -28,121 +29,219 @@ export default function AboutSection() {
       <div className="absolute top-0 left-0 w-full h-16 bg-gradient-to-b from-darkBlue-900 to-transparent"></div>
       <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-darkBlue-900 to-transparent"></div>
       
-      {/* Floating code symbols */}
-      <div className="absolute top-20 left-10 text-blue-500 opacity-20 animate-bounce-slow">
-        <Code size={32} />
-      </div>
-      <div className="absolute bottom-20 right-10 text-blue-500 opacity-20 animate-bounce-slow" style={{ animationDelay: '1s' }}>
-        <Code size={32} />
-      </div>
-      
       <div className="container mx-auto px-4">
-        <div className={`max-w-3xl mx-auto text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className={`max-w-6xl mx-auto text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <span className="text-xs bg-blue-600 bg-opacity-20 text-blue-300 px-3 py-1 rounded-full border border-blue-500 border-opacity-30 mb-4 inline-block">ABOUT US</span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 blue-glow-text">About IEEE CodeX</h2>
-          <div className="w-16 h-1 bg-blue-500 mx-auto mb-6"></div>
-          <p className="text-lg text-gray-300">
-            IEEE CodeX Sri Lanka is the latest initiative by the IEEE Sri Lanka Section, aimed at building a thriving tech community through the power of competitive programming.
-          </p>
-        </div>
-        
-        <GlassCard
-          className={`rounded-2xl p-6 md:p-8 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-          glowIntensity="medium"
-          blurStrength="medium"
-          hoverEffect="subtle"
-          interactive={true}
-        >
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="space-y-6">
-              <div className="flex items-start">
-                <div className="mr-4 mt-1">
-                  <Trophy className="text-blue-400 h-6 w-6" />
-                </div>
-                <p className="text-gray-300 leading-relaxed">
-                  Our engaging competitions, such as the National Olympiad in Informatics (NOI), IEEEXtreme 19.0, and the International Collegiate Programming Contest (ICPC) National Qualifier, provide a platform for participants to enhance their technical abilities and represent Sri Lanka on international stages.
-                </p>
-              </div>
-              
-              <div className="flex items-start">
-                <div className="mr-4 mt-1">
-                  <Book className="text-blue-400 h-6 w-6" />
-                </div>
-                <p className="text-gray-300 leading-relaxed">
-                  In addition to these competitions, we are excited to launch a Hands-on training session series. These sessions are designed for both school students and undergraduates, regardless of their current skill level, to improve their coding capabilities.
-                </p>
-              </div>
-              
-              <a 
-                href="#competitions" 
-                className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors mt-4 group focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-darkBlue-900 rounded-md px-2 py-1"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById('competitions').scrollIntoView({ behavior: 'smooth' });
+          
+          {/* Updated Header with CodeX Text Logo */}
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold blue-glow-text">About</h2>
+            <div className="flex items-center gap-3">
+              <Image 
+                src="/images/codex-text.png" 
+                alt="CodeX Sri Lanka" 
+                width={180} 
+                height={50} 
+                className="drop-shadow-lg blue-glow-text"
+                style={{
+                  filter: 'drop-shadow(0 0 10px rgba(59, 130, 246, 0.5))'
                 }}
-              >
-                <span>See our competitions</span>
-                <ExternalLink className="ml-2 h-4 w-4 transform transition-transform group-hover:translate-x-1" />
-              </a>
-            </div>
-            
-            <div className="bg-gradient-to-br from-darkBlue-800 to-darkBlue-600 p-6 rounded-xl neon-border relative">
-              {/* Shimmer effect */}
-              <div className="absolute inset-0 overflow-hidden rounded-xl">
-                <div className="shimmer absolute inset-0"></div>
-              </div>
-              
-              <div className="relative z-10">
-                <div className="flex items-start mb-6">
-                  <div className="mr-4 mt-1">
-                    <Users className="text-blue-400 h-6 w-6" />
-                  </div>
-                  <p className="text-gray-200 leading-relaxed">
-                    Participants will enhance their problem-solving and algorithmic skills while gaining valuable insights from past winners who will share their experiences, strategies, and real competition questions.
-                  </p>
-                </div>
-                
-                <GlassCard
-                  className="p-4 rounded-lg card-3d"
-                  glowIntensity="subtle"
-                  blurStrength="medium"
-                  hoverEffect="glow"
-                  interactive={true}
-                >
-                  <p className="text-blue-300 font-medium">
-                    Our goal is to equip all aspiring coders with the confidence and skills necessary to excel in competitive programming and effectively represent Sri Lanka on the global stage. Join us in this journey to unlock your potential and become a part of the vibrant CodeX community!
-                  </p>
-                </GlassCard>
-                
-                {/* Stats */}
-                <div className="grid grid-cols-2 gap-4 mt-6">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-blue-400">3+</div>
-                    <div className="text-xs text-gray-400">Major Competitions</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-blue-400">500+</div>
-                    <div className="text-xs text-gray-400">Participants</div>
-                  </div>
-                </div>
-              </div>
+              />
+              <h2 className="text-3xl md:text-4xl font-bold blue-glow-text">Sri Lanka</h2>
             </div>
           </div>
-        </GlassCard>
+          
+          <div className="w-16 h-1 bg-blue-500 mx-auto mb-8"></div>
+        </div>
         
-        {/* Timeline teaser */}
-        <div className={`mt-12 text-center transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <a 
-            href="#timeline" 
-            className="inline-flex items-center px-6 py-3 text-sm font-medium text-blue-300 border border-blue-500 border-opacity-30 rounded-lg hover:bg-blue-900 hover:bg-opacity-30 transition-colors group"
-            onClick={(e) => {
-              e.preventDefault();
-              document.getElementById('timeline').scrollIntoView({ behavior: 'smooth' });
-            }}
+        {/* What is CodeX Section */}
+        <div className={`mb-16 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <GlassCard
+            className="rounded-2xl p-8 md:p-10 max-w-4xl mx-auto"
+            glowIntensity="medium"
+            blurStrength="medium"
+            hoverEffect="subtle"
+            interactive={true}
           >
-            <span>View our programming journey</span>
-            <ExternalLink className="ml-2 h-4 w-4 transform transition-transform group-hover:translate-x-1" />
-          </a>
+            <h3 className="text-2xl font-bold text-blue-300 mb-6 text-center">What is IEEE CodeX Sri Lanka?</h3>
+            <div className="text-gray-300 leading-relaxed space-y-4">
+              <p className="text-lg">
+                IEEE CodeX Sri Lanka is the latest initiative by the IEEE Sri Lanka Section aimed at promoting competitive programming in Sri Lanka through various coding contests and training sessions. Our mission is to build a thriving tech community and develop world-class programming talent in Sri Lanka.
+              </p>
+              <p>
+                We are actively engaged in facilitating three major competitive programming events: the <strong className="text-blue-400">National Olympiad in Informatics (NOI) 2025</strong>, <strong className="text-blue-400">IEEEXtreme 19.0</strong>, and the <strong className="text-blue-400">International Collegiate Programming Contest (ICPC) 2025</strong>. These competitions provide platforms for aspiring programmers to showcase their skills, learn from experts, and foster a strong programming culture within the country.
+              </p>
+              <p>
+                In addition to hosting competitions, we offer a comprehensive <strong className="text-blue-400">12-session training series</strong> designed for both school students and undergraduates. These sessions cover everything from basic competitive programming concepts to advanced algorithms like dynamic programming and graph theory, ensuring participants are well-prepared for national and international competitions.
+              </p>
+            </div>
+          </GlassCard>
+        </div>
+
+        {/* Two Main Sections */}
+        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          
+          {/* Session Series Section */}
+          <div className={`transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <GlassCard
+              className="rounded-2xl p-6 md:p-8 h-full"
+              glowIntensity="medium"
+              blurStrength="medium"
+              hoverEffect="subtle"
+              interactive={true}
+            >
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 rounded-full bg-blue-900 bg-opacity-70 flex items-center justify-center mr-4 blue-glow-subtle">
+                  <BookOpen className="w-6 h-6 text-blue-400" />
+                </div>
+                <h3 className="text-2xl font-bold text-blue-300">Session Series</h3>
+              </div>
+              
+              <p className="text-gray-300 leading-relaxed mb-6">
+                Our comprehensive 12-session training series is designed to build a strong foundation in competitive programming. Each session features expert speakers who guide participants through essential algorithmic concepts and problem-solving techniques.
+              </p>
+              
+              <div className="bg-darkBlue-800 bg-opacity-50 rounded-lg p-4 mb-6">
+                <h4 className="text-white font-semibold mb-3 text-sm">Key Features:</h4>
+                <ul className="text-gray-300 text-sm space-y-2">
+                  <li>• 12 comprehensive online sessions</li>
+                  <li>• Expert speakers and industry professionals</li>
+                  <li>• From basics to advanced algorithms</li>
+                  <li>• Interactive problem-solving workshops</li>
+                  <li>• All skill levels welcome</li>
+                </ul>
+              </div>
+              
+              <div className="space-y-2 mb-6">
+                <h4 className="text-white font-semibold text-sm mb-3">Session Topics:</h4>
+                {[
+                  "Introduction to Competitive Programming",
+                  "Time and Space Complexity", 
+                  "Arrays and Prefix Sums",
+                  "Sorting Algorithms",
+                  "Two-Pointer Techniques",
+                  "Binary Search",
+                  "Greedy Algorithms",
+                  "Recursion and Backtracking",
+                  "Dynamic Programming (Part I & II)",
+                  "Graph Theory and Traversals",
+                  "Trees and Disjoint Set Union (DSU)"
+                ].slice(0, 6).map((session, index) => (
+                  <div key={index} className="flex items-center text-gray-400 text-sm">
+                    <span className="text-blue-400 mr-2 font-bold text-xs">{index + 1}.</span>
+                    <span>{session}</span>
+                  </div>
+                ))}
+                <div className="text-blue-400 text-sm italic mt-2">...and 6 more advanced topics</div>
+              </div>
+              
+              <div className="text-center">
+                <a 
+                  href="#sessions" 
+                  className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors group"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('sessions').scrollIntoView({ behavior: 'smooth' });
+                  }}
+                >
+                  <span>Explore all sessions</span>
+                  <ArrowRight className="ml-2 h-4 w-4 transform transition-transform group-hover:translate-x-1" />
+                </a>
+              </div>
+            </GlassCard>
+          </div>
+          
+          {/* Competitions Section */}
+          <div className={`transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <GlassCard
+              className="rounded-2xl p-6 md:p-8 h-full"
+              glowIntensity="medium"
+              blurStrength="medium"
+              hoverEffect="subtle"
+              interactive={true}
+            >
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 rounded-full bg-blue-900 bg-opacity-70 flex items-center justify-center mr-4 blue-glow-subtle">
+                  <Trophy className="w-6 h-6 text-blue-400" />
+                </div>
+                <h3 className="text-2xl font-bold text-blue-300">Hosting Competitions</h3>
+              </div>
+              
+              <p className="text-gray-300 leading-relaxed mb-6">
+                We facilitate and support major competitive programming events that provide platforms for aspiring programmers to showcase their skills and represent Sri Lanka on international stages.
+              </p>
+              
+              <div className="space-y-4 mb-6">
+                <div className="bg-darkBlue-800 bg-opacity-50 p-4 rounded-lg border border-blue-900 border-opacity-30">
+                  <div className="flex items-center mb-2">
+                    <span className="w-6 h-6 rounded-full bg-blue-600 bg-opacity-30 flex items-center justify-center mr-3 text-blue-400 text-xs font-bold">1</span>
+                    <h4 className="text-lg font-semibold text-white">National Olympiad in Informatics (NOI)</h4>
+                  </div>
+                  <p className="text-gray-300 text-sm">For secondary school students to compete at national and international levels.</p>
+                </div>
+                
+                <div className="bg-darkBlue-800 bg-opacity-50 p-4 rounded-lg border border-blue-900 border-opacity-30">
+                  <div className="flex items-center mb-2">
+                    <span className="w-6 h-6 rounded-full bg-blue-600 bg-opacity-30 flex items-center justify-center mr-3 text-blue-400 text-xs font-bold">2</span>
+                    <h4 className="text-lg font-semibold text-white">IEEEXtreme 19.0</h4>
+                  </div>
+                  <p className="text-gray-300 text-sm">24-hour global programming competition for IEEE student members.</p>
+                </div>
+                
+                <div className="bg-darkBlue-800 bg-opacity-50 p-4 rounded-lg border border-blue-900 border-opacity-30">
+                  <div className="flex items-center mb-2">
+                    <span className="w-6 h-6 rounded-full bg-blue-600 bg-opacity-30 flex items-center justify-center mr-3 text-blue-400 text-xs font-bold">3</span>
+                    <h4 className="text-lg font-semibold text-white">International Collegiate Programming Contest (ICPC)</h4>
+                  </div>
+                  <p className="text-gray-300 text-sm">Team-based programming contest for university students.</p>
+                </div>
+              </div>
+              
+              <div className="text-center">
+                <a 
+                  href="#competitions" 
+                  className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors group"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('competitions').scrollIntoView({ behavior: 'smooth' });
+                  }}
+                >
+                  <span>Learn more about competitions</span>
+                  <ArrowRight className="ml-2 h-4 w-4 transform transition-transform group-hover:translate-x-1" />
+                </a>
+              </div>
+            </GlassCard>
+          </div>
+        </div>
+        
+        {/* Bottom Summary */}
+        <div className={`mt-16 max-w-4xl mx-auto transition-all duration-1000 delay-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <GlassCard
+            className="rounded-2xl p-6 md:p-8 text-center"
+            glowIntensity="medium"
+            blurStrength="medium"
+            hoverEffect="subtle"
+            interactive={true}
+          >
+            <h3 className="text-xl font-bold text-blue-300 mb-4">Our Mission</h3>
+            <p className="text-gray-300 leading-relaxed">
+              Our goal is to equip all aspiring coders with the confidence and skills necessary to excel in competitive programming and effectively represent Sri Lanka on the global stage. Through our comprehensive training sessions and world-class competitions, we're building the next generation of tech innovators in Sri Lanka.
+            </p>
+            <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="bg-blue-900 bg-opacity-30 rounded-lg px-4 py-2">
+                <div className="text-2xl font-bold text-blue-400">12</div>
+                <div className="text-xs text-gray-400">Training Sessions</div>
+              </div>
+              <div className="bg-blue-900 bg-opacity-30 rounded-lg px-4 py-2">
+                <div className="text-2xl font-bold text-blue-400">3</div>
+                <div className="text-xs text-gray-400">Major Competitions</div>
+              </div>
+              <div className="bg-blue-900 bg-opacity-30 rounded-lg px-4 py-2">
+                <div className="text-2xl font-bold text-blue-400">500+</div>
+                <div className="text-xs text-gray-400">Expected Participants</div>
+              </div>
+            </div>
+          </GlassCard>
         </div>
       </div>
     </section>
