@@ -35,54 +35,43 @@ export default function FAQSection() {
     return () => observer.disconnect();
   }, []);
 
-  // FAQ data with categories - kept the same
+  // Updated FAQ data with only 5 questions and enhanced answers
   const faqs = [
     { 
       question: "What is IEEE CodeX Sri Lanka?", 
-      answer: "IEEE CodeX Sri Lanka is the latest initiative by the IEEE Sri Lanka Section aimed at promoting competitive programming in Sri Lanka through various coding contests and training sessions. Our mission is to build a thriving tech community and develop world-class programming talent in Sri Lanka.",
+      answer: "IEEE CodeX Sri Lanka is the latest initiative by the IEEE Sri Lanka Section aimed at promoting competitive programming in Sri Lanka through various coding contests and training sessions. Our mission is to build a thriving tech community and develop world-class programming talent in Sri Lanka. We are actively engaged in facilitating three major competitive programming events: the National Olympiad in Informatics (NOI) 2025, IEEEXtreme 19.0, and the International Collegiate Programming Contest (ICPC) 2025. These competitions provide platforms for aspiring programmers to showcase their skills, learn from experts, and foster a strong programming culture within the country.",
       category: "general"
     },
     { 
       question: "How can I participate in the competitions?", 
-      answer: "Participants can register for the National Olympiad in Informatics (NOI), IEEEXtreme, and ICPC through the respective official websites once registrations open. For NOI, students need to register through their schools. For IEEEXtreme, you must be an IEEE member. For ICPC, your university team coach will need to register your team.", 
+      answer: "Participants can register for the National Olympiad in Informatics (NOI), IEEEXtreme 19.0, and ICPC through the respective official websites once registrations open. For NOI, students need to register through their schools, often with the guidance of a teacher or academic coordinator. For IEEEXtreme 19.0, you must be an IEEE member to be eligible to participate, ensuring you meet this prerequisite before attempting to register. For ICPC, your university team coach will need to register your team, highlighting the team-based nature of this competition and the need for institutional support.", 
       category: "participation"
     },
     { 
       question: "What training sessions are available?", 
-      answer: "We offer a series of training sessions focusing on problem-solving, algorithmic thinking, teamwork, time management and insights from past winners to prepare participants for competitions. These include weekly online practice sessions, in-person workshops, and specialized boot camps before major competitions. All skill levels are welcome!", 
+      answer: "We offer a series of training sessions focusing on problem-solving, algorithmic thinking, teamwork, time management, and insights from past winners to prepare participants for competitions. These include weekly online practice sessions, in-person workshops, and specialized boot camps before major competitions. All skill levels are welcome! Each session is carefully designed to build both technical and soft skills, helping participants grow steadily and confidently. Whether you're a beginner or an experienced competitor, there's always something new to learn and apply. Our comprehensive 12-session series covers everything from basic competitive programming concepts to advanced algorithms like dynamic programming and graph theory.", 
       category: "training"
     },
     { 
       question: "Who can participate in these competitions?", 
-      answer: "The competitions like IEEEXtreme 19.0 and International Collegiate Programming Contest (ICPC) are open to university students while National Olympiad in Informatics (NOI) is open to secondary school students. Age restrictions may apply for certain competitions, particularly for international advancement.", 
+      answer: "Competitions like IEEEXtreme 19.0 and the International Collegiate Programming Contest (ICPC) are open to university students, while the National Olympiad in Informatics (NOI) is geared towards secondary school students. Age restrictions may apply for certain competitions, particularly for international advancement. For instance, NOI participants must be under 20 years of age, and ICPC is typically open to undergraduate students under the age of 24. These guidelines ensure fair competition and alignment with global standards.", 
       category: "eligibility"
     },
     { 
       question: "How can sponsors get involved?", 
-      answer: "Sponsors can partner with us to gain visibility, access top talent, and showcase their brand through various promotional opportunities. We offer different sponsorship tiers with benefits including logo placement, speaking opportunities, recruitment access, and more. Please contact us through the form in the Contact section for detailed sponsorship packages.", 
+      answer: "Sponsors can partner with us to gain visibility, access top talent, and showcase their brand through various promotional opportunities. We offer different sponsorship tiers with benefits including logo placement, speaking opportunities, recruitment access, and more. Sponsorship also provides a unique platform to engage with a passionate community of young innovators and future tech leaders. For detailed sponsorship packages and customized collaboration options, please contact us through our contact form or reach out directly to our team.", 
       category: "sponsorship"
-    },
-    {
-      question: "Do I need to have competitive programming experience?",
-      answer: "No prior competitive programming experience is required to participate in our training sessions or some of our entry-level competitions. We welcome beginners and provide resources to help you get started. For advanced competitions, some programming knowledge is beneficial but not mandatory.",
-      category: "participation"
-    },
-    {
-      question: "What programming languages can I use in competitions?",
-      answer: "Most competitions support multiple programming languages including C++, Java, Python, and others. However, C++ is often preferred in competitive programming due to its speed and standard template library. We recommend checking the specific rules for each competition you participate in.",
-      category: "technical"
     }
   ];
 
-  // Enhanced category metadata with distinct colors
+  // Enhanced category metadata with distinct colors (removed technical category)
   const categories = {
     all: { label: 'All Questions', color: 'green-400', icon: <Filter className="w-3.5 h-3.5 mr-1.5" /> },
     general: { label: 'General', color: 'green-400', icon: <HelpCircle className="w-3.5 h-3.5 mr-1.5" /> },
     participation: { label: 'Participation', color: 'green-400', icon: <Tag className="w-3.5 h-3.5 mr-1.5" /> },
     training: { label: 'Training', color: 'green-400', icon: <Tag className="w-3.5 h-3.5 mr-1.5" /> },
     eligibility: { label: 'Eligibility', color: 'green-400', icon: <Tag className="w-3.5 h-3.5 mr-1.5" /> },
-    sponsorship: { label: 'Sponsorship', color: 'green-400', icon: <Tag className="w-3.5 h-3.5 mr-1.5" /> },
-    technical: { label: 'Technical', color: 'green-400', icon: <Tag className="w-3.5 h-3.5 mr-1.5" /> }
+    sponsorship: { label: 'Sponsorship', color: 'green-400', icon: <Tag className="w-3.5 h-3.5 mr-1.5" /> }
   };
 
   // Filter FAQs based on search term and active category
