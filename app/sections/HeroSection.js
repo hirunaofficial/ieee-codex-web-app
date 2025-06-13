@@ -100,7 +100,16 @@ export default function HeroSection() {
             <div className={`inline-flex items-center mb-3 md:mb-4 bg-blue-900 bg-opacity-30 px-3 py-1 rounded-full border border-blue-500 border-opacity-30 transition-all duration-1000 delay-300 transform ${
               isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
             }`}>
-              <span className="text-xs text-blue-300">IEEE Sri Lanka Section</span>
+              <Image 
+                src="/images/ieee-section-flag.png" 
+                alt="IEEE Sri Lanka Section" 
+                width={120} 
+                height={20} 
+                className="drop-shadow-sm"
+                style={{
+                  filter: 'drop-shadow(0 0 5px rgba(59, 130, 246, 0.3))'
+                }}
+              />
             </div>
             
             <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold mb-4 md:mb-6 leading-tight transition-all duration-1000 delay-500 transform ${
