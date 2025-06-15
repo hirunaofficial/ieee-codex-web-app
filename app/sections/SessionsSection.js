@@ -164,7 +164,7 @@ export default function SessionsSection() {
           
           <div className="w-16 h-1 bg-blue-500 mx-auto mb-6"></div>
           <p className="text-lg text-gray-300">
-            Comprehensive training sessions designed to build strong competitive programming foundations
+            Comprehensive training sessions are designed to build strong programming foundations.
           </p>
         </div>
 
