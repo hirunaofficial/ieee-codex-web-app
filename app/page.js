@@ -8,7 +8,6 @@ import AboutSection from '@/app/sections/AboutSection';
 import SessionsSection from '@/app/sections/SessionsSection';
 import CompetitionsSection from '@/app/sections/CompetitionsSection';
 import TimelineSection from '@/app/sections/TimelineSection';
-import RegistrationCTA from '@/app/sections/RegistrationCTA';
 import TeamSection from '@/app/sections/TeamSection';
 import FAQSection from '@/app/sections/FAQSection';
 import ContactSection from '@/app/sections/ContactSection';
@@ -34,9 +33,6 @@ export default function Home() {
 
       {/* Timeline Section */}
       <TimelineSection />
-
-      {/* Registration CTA Section */}
-      <RegistrationCTA />
 
       {/* Team Section */}
       <TeamSection />
