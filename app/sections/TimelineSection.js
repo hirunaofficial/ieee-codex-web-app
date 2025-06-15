@@ -81,8 +81,44 @@ export default function TimelineSection() {
     setExpandedEvent(expandedEvent === index ? null : index);
   };
 
-  // Updated events data with corrected timeline and status
+  // Complete events data with full NOI qualification process
   const events = [
+    { 
+      date: "February 2025", 
+      title: "NOI 2025 Registration Opens", 
+      description: "Registration begins for the National Olympiad in Informatics 2025.", 
+      category: "noi",
+      status: "past",
+      icon: <Trophy className="h-5 w-5" />,
+      detailedInfo: "Registration for NOI 2025 opened to all secondary school students across Sri Lanka. Students could register through their schools or individually online."
+    },
+    { 
+      date: "March 15, 2025", 
+      title: "NOI 2025 Qualifier Round 1", 
+      description: "First qualifying round for NOI 2025 - online contest.", 
+      category: "noi",
+      status: "past",
+      icon: <Trophy className="h-5 w-5" />,
+      detailedInfo: "The first qualifier was an online contest lasting 3 hours with 4-5 problems of varying difficulty. Students competed from their schools or designated centers."
+    },
+    { 
+      date: "April 12, 2025", 
+      title: "NOI 2025 Qualifier Round 2", 
+      description: "Second qualifying round for NOI 2025 - advanced problems.", 
+      category: "noi",
+      status: "past",
+      icon: <Trophy className="h-5 w-5" />,
+      detailedInfo: "The second qualifier featured more challenging algorithmic problems. Top performers from Round 1 advanced to compete in this round."
+    },
+    { 
+      date: "May 10, 2025", 
+      title: "NOI 2025 National Finals", 
+      description: "National finals to select the Sri Lankan team for IOI 2025.", 
+      category: "noi",
+      status: "past",
+      icon: <Trophy className="h-5 w-5" />,
+      detailedInfo: "The national finals consisted of two 5-hour contests held over two days. The top 4 students were selected to represent Sri Lanka at the International Olympiad in Informatics."
+    },
     { 
       date: "June 28, 2025", 
       title: "Session 1: Introduction to Competitive Programming", 
@@ -210,6 +246,15 @@ export default function TimelineSection() {
       detailedInfo: "University teams will compete to represent Sri Lanka at the ICPC Asia Regional Contest. Teams consist of three undergraduate students. The selection contest will be held over 5 hours with challenging algorithmic problems."
     },
     { 
+      date: "December 2025", 
+      title: "ICPC Asia Regional Contest", 
+      description: "Regional contest for qualified ICPC teams.", 
+      category: "icpc",
+      status: "future",
+      icon: <Trophy className="h-5 w-5" />,
+      detailedInfo: "The selected Sri Lankan teams will compete in the ICPC Asia Regional Contest alongside teams from other Asian countries. Top performers may advance to the ICPC World Finals."
+    },
+    { 
       date: "February 2026", 
       title: "NOI 2026 Registration Opens", 
       description: "Registration begins for the next National Olympiad in Informatics.", 
@@ -217,6 +262,15 @@ export default function TimelineSection() {
       status: "future",
       icon: <Trophy className="h-5 w-5" />,
       detailedInfo: "Begin your journey by registering for the National Olympiad in Informatics 2026. Registration is open to all secondary school students across Sri Lanka."
+    },
+    { 
+      date: "March 2026", 
+      title: "NOI 2026 Qualifier Round 1", 
+      description: "First qualifying round for NOI 2026.", 
+      category: "noi",
+      status: "future",
+      icon: <Trophy className="h-5 w-5" />,
+      detailedInfo: "The first qualifier for the next cycle begins. Students who participated in training sessions will be well-prepared for the algorithmic challenges."
     },
     { 
       date: "March 2026", 
@@ -309,7 +363,7 @@ export default function TimelineSection() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4 blue-glow-text">Event Timeline</h2>
           <div className="w-16 h-1 bg-blue-500 mx-auto mb-6"></div>
           <p className="text-lg text-gray-300 mb-6">
-            Key dates and milestones for our training sessions and competitions
+            Complete timeline from NOI qualifiers to training sessions and competitions
           </p>
           
           {/* Current date indicator */}
