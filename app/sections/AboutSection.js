@@ -66,7 +66,7 @@ export default function AboutSection() {
             <h3 className="text-2xl font-bold text-blue-300 mb-6 text-center">What is IEEE CodeX Sri Lanka?</h3>
             <div className="text-gray-300 leading-relaxed space-y-4">
               <p className="text-lg">
-                IEEE CodeX Sri Lanka is the latest initiative by the IEEE Sri Lanka Section aimed at promoting competitive programming in Sri Lanka through various coding contests and training sessions. Our mission is to build a thriving tech community and develop world-class programming talent in Sri Lanka.
+                IEEE CodeX Sri Lanka is the latest initiative by the IEEE Sri Lanka Section aimed at promoting competitive programming in Sri Lanka through various coding contests and training sessions.
               </p>
               <p>
                 We are actively engaged in facilitating three major competitive programming events: the <strong className="text-blue-400">National Olympiad in Informatics (NOI) 2025</strong>, <strong className="text-blue-400">IEEEXtreme 19.0</strong>, and the <strong className="text-blue-400">International Collegiate Programming Contest (ICPC) 2025</strong>. These competitions provide platforms for aspiring programmers to showcase their skills, learn from experts, and foster a strong programming culture within the country.
@@ -110,29 +110,6 @@ export default function AboutSection() {
                   <li>• Interactive problem-solving workshops</li>
                   <li>• All skill levels welcome</li>
                 </ul>
-              </div>
-              
-              <div className="space-y-2 mb-6">
-                <h4 className="text-white font-semibold text-sm mb-3">Session Topics:</h4>
-                {[
-                  "Introduction to Competitive Programming",
-                  "Time and Space Complexity", 
-                  "Arrays and Prefix Sums",
-                  "Sorting Algorithms",
-                  "Two-Pointer Techniques",
-                  "Binary Search",
-                  "Greedy Algorithms",
-                  "Recursion and Backtracking",
-                  "Dynamic Programming (Part I & II)",
-                  "Graph Theory and Traversals",
-                  "Trees and Disjoint Set Union (DSU)"
-                ].slice(0, 6).map((session, index) => (
-                  <div key={index} className="flex items-center text-gray-400 text-sm">
-                    <span className="text-blue-400 mr-2 font-bold text-xs">{index + 1}.</span>
-                    <span>{session}</span>
-                  </div>
-                ))}
-                <div className="text-blue-400 text-sm italic mt-2">...and 6 more advanced topics</div>
               </div>
               
               <div className="text-center">
@@ -225,7 +202,7 @@ export default function AboutSection() {
           >
             <h3 className="text-xl font-bold text-blue-300 mb-4">Our Mission</h3>
             <p className="text-gray-300 leading-relaxed">
-              Our goal is to equip all aspiring coders with the confidence and skills necessary to excel in competitive programming and effectively represent Sri Lanka on the global stage. Through our comprehensive training sessions and world-class competitions, we're building the next generation of tech innovators in Sri Lanka.
+              Our goal is to equip all aspiring coders with the confidence and skills necessary to excel in competitive programming and effectively represent Sri Lanka on the global stage. Through our comprehensive training sessions and world-class competitions, we are building the next generation of Sri Lanka's vibrant tech community.
             </p>
             <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
               <div className="bg-blue-900 bg-opacity-30 rounded-lg px-4 py-2">
