@@ -63,7 +63,7 @@ export default function ContactSection() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4 blue-glow-text">Get In Touch</h2>
           <div className="w-16 h-1 bg-blue-500 mx-auto mb-8"></div>
           <p className="text-lg text-gray-300 mb-12">
-            We would love to hear from you. Reach out with any questions about our competitions or training programs.
+            We would love to hear from you. Whether you have questions about our training sessions, competitions, or just want to connect, feel free to reach out!
           </p>
 
           {/* Contact Card */}
