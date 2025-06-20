@@ -62,10 +62,6 @@ export default function ContactSection() {
           <span className="text-xs bg-blue-600 bg-opacity-20 text-blue-300 px-3 py-1 rounded-full border border-blue-500 border-opacity-30 mb-4 inline-block">CONNECT</span>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 blue-glow-text">Get In Touch</h2>
           <div className="w-16 h-1 bg-blue-500 mx-auto mb-8"></div>
-          <p className="text-lg text-gray-300 mb-12">
-            We would love to hear from you. Whether you have questions about our training sessions, competitions, or just want to connect, feel free to reach out!
-          </p>
-
           {/* Contact Card */}
           <div className={`transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <ParallaxEffect speed={0.03} direction="vertical">
