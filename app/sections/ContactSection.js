@@ -85,11 +85,11 @@ export default function ContactSection() {
                   {/* Email Contact */}
                   <div className="bg-gradient-to-r from-blue-900 to-blue-800 bg-opacity-30 rounded-xl p-6 border border-blue-500 border-opacity-30">
                     <a 
-                      href="mailto:thamindusrinirmal1@gmail.com" 
+                      href="mailto:thamindusri@ieee.org" 
                       className="flex items-center justify-center text-blue-400 hover:text-blue-300 transition-colors group bg-darkBlue-800 bg-opacity-50 p-4 rounded-lg hover:bg-opacity-70 text-lg font-medium"
                     >
                       <Mail className="w-6 h-6 mr-4 flex-shrink-0" />
-                      <span className="group-hover:underline">thamindusrinirmal1@gmail.com</span>
+                      <span className="group-hover:underline">thamindusri@ieee.org</span>
                     </a>
                     
                     <div className="mt-4 pt-4 border-t border-blue-900 border-opacity-30">
