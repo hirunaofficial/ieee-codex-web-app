@@ -348,11 +348,11 @@ export default function SessionsSection() {
                 </p>
                 <div className="space-y-3">
                   <a 
-                    href="mailto:thamindusrinirmal1@gmail.com" 
+                    href="mailto:thamindusri@ieee.org" 
                     className="flex items-center text-blue-400 hover:text-blue-300 transition-colors group bg-darkBlue-800 bg-opacity-50 p-3 rounded-lg hover:bg-opacity-70"
                   >
                     <Mail className="w-4 h-4 mr-3 flex-shrink-0" />
-                    <span className="text-sm group-hover:underline">thamindusrinirmal1@gmail.com</span>
+                    <span className="text-sm group-hover:underline">thamindusri@ieee.org</span>
                     <ExternalLink className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                   </a>
                   <a 
