@@ -1,12 +1,18 @@
-'use client';
-
 import { useState, useEffect } from 'react';
-import { Mail } from 'lucide-react';
+import { Mail, User, MessageSquare, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import ParallaxEffect from '@/app/components/ParallaxEffect';
 import GlassCard from '@/app/components/GlassCard';
 
 export default function ContactSection() {
   const [isVisible, setIsVisible] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', or null
   
   // Intersection Observer to trigger animations when section comes into view
   useEffect(() => {
@@ -28,6 +34,69 @@ export default function ContactSection() {
     return () => observer.disconnect();
   }, []);
 
+  // Handle input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  // Handle form submission with EmailJS
+  const handleSubmit = async () => {
+    // Basic validation
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+      setSubmitStatus('error');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      // Using EmailJS to send email
+      const emailParams = {
+        to_email: 'hirunaofficial@gmail.com',
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        reply_to: formData.email
+      };
+
+      // You'll need to replace these with your actual EmailJS credentials
+      const SERVICE_ID = 'your_service_id';
+      const TEMPLATE_ID = 'your_template_id';
+      const PUBLIC_KEY = 'your_public_key';
+
+      // Import EmailJS dynamically
+      const emailjs = await import('https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js');
+      
+      const result = await emailjs.send(SERVICE_ID, TEMPLATE_ID, emailParams, PUBLIC_KEY);
+      
+      if (result.status === 200) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Email sending failed:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // Reset status after 5 seconds
+  useEffect(() => {
+    if (submitStatus) {
+      const timer = setTimeout(() => setSubmitStatus(null), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [submitStatus]);
+
   return (
     <section id="contact" className="py-24 bg-gradient-to-r from-darkBlue-900 via-blue-900 to-darkBlue-800 text-white relative overflow-hidden">
       {/* Enhanced background effects */}
@@ -42,7 +111,7 @@ export default function ContactSection() {
         {Array.from({ length: 30 }).map((_, index) => (
           <div 
             key={index}
-            className="absolute rounded-full"
+            className="absolute rounded-full animate-pulse"
             style={{
               width: `${2 + Math.random() * 5}px`,
               height: `${2 + Math.random() * 5}px`,
@@ -50,8 +119,8 @@ export default function ContactSection() {
               top: `${Math.random() * 100}%`,
               opacity: 0.1 + Math.random() * 0.3,
               backgroundColor: '#3b82f6',
-              animation: `floatUp ${15 + Math.random() * 15}s infinite linear`,
-              animationDelay: `${Math.random() * 10}s`
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${2 + Math.random() * 3}s`
             }}
           ></div>
         ))}
@@ -62,63 +131,138 @@ export default function ContactSection() {
           <span className="text-xs bg-blue-600 bg-opacity-20 text-blue-300 px-3 py-1 rounded-full border border-blue-500 border-opacity-30 mb-4 inline-block">CONNECT</span>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 blue-glow-text">Get In Touch</h2>
           <div className="w-16 h-1 bg-blue-500 mx-auto mb-8"></div>
-          {/* Contact Card */}
+          <p className="text-lg text-gray-300 mb-12">
+            Send us a message and we'll get back to you within 24 hours at hirunaofficial@gmail.com
+          </p>
+          
+          {/* Contact Form */}
           <div className={`transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <ParallaxEffect speed={0.03} direction="vertical">
-              <GlassCard className="p-8 md:p-12 rounded-2xl bg-opacity-80 backdrop-blur-lg max-w-2xl mx-auto">
-                <div className="text-center">
-                  {/* Email Icon */}
-                  <div className="w-20 h-20 bg-blue-900 bg-opacity-50 rounded-full flex items-center justify-center mx-auto mb-6 blue-glow-subtle">
-                    <Mail className="w-10 h-10 text-blue-400" />
+              <GlassCard className="p-8 md:p-12 rounded-2xl bg-opacity-80 backdrop-blur-lg max-w-3xl mx-auto">
+                <div className="space-y-6">
+                  {/* Status Messages */}
+                  {submitStatus && (
+                    <div className={`p-4 rounded-lg flex items-center space-x-3 ${
+                      submitStatus === 'success' 
+                        ? 'bg-green-900 bg-opacity-30 border border-green-500 border-opacity-30 text-green-300' 
+                        : 'bg-red-900 bg-opacity-30 border border-red-500 border-opacity-30 text-red-300'
+                    }`}>
+                      {submitStatus === 'success' ? (
+                        <>
+                          <CheckCircle className="w-5 h-5" />
+                          <span>Message sent successfully! We'll get back to you soon.</span>
+                        </>
+                      ) : (
+                        <>
+                          <AlertCircle className="w-5 h-5" />
+                          <span>Failed to send message. Please try again.</span>
+                        </>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Form Fields */}
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {/* Name Field */}
+                    <div className="space-y-2">
+                      <label className="block text-sm font-medium text-blue-300 text-left">
+                        Full Name *
+                      </label>
+                      <div className="relative">
+                        <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-blue-400" />
+                        <input
+                          type="text"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          className="w-full pl-11 pr-4 py-3 bg-darkBlue-800 bg-opacity-50 border border-blue-500 border-opacity-30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                          placeholder="Enter your full name"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Email Field */}
+                    <div className="space-y-2">
+                      <label className="block text-sm font-medium text-blue-300 text-left">
+                        Email Address *
+                      </label>
+                      <div className="relative">
+                        <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-blue-400" />
+                        <input
+                          type="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          className="w-full pl-11 pr-4 py-3 bg-darkBlue-800 bg-opacity-50 border border-blue-500 border-opacity-30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                          placeholder="Enter your email address"
+                        />
+                      </div>
+                    </div>
                   </div>
-                  
-                  {/* Contact Title */}
-                  <h3 className="text-2xl font-bold text-white mb-4">Contact for More Information</h3>
-                  <p className="text-gray-300 mb-8">
-                    Have questions about our sessions, competitions, or want to get involved? We're here to help!
-                  </p>
-                  
-                  {/* Email Contact */}
-                  <div className="bg-gradient-to-r from-blue-900 to-blue-800 bg-opacity-30 rounded-xl p-6 border border-blue-500 border-opacity-30">
-                    <a 
-                      href="mailto:thamindusri@ieee.org" 
-                      className="flex items-center justify-center text-blue-400 hover:text-blue-300 transition-colors group bg-darkBlue-800 bg-opacity-50 p-4 rounded-lg hover:bg-opacity-70 text-lg font-medium"
+
+                  {/* Subject Field - Now a text input */}
+                  <div className="space-y-2">
+                    <label className="block text-sm font-medium text-blue-300 text-left">
+                      Subject *
+                    </label>
+                    <div className="relative">
+                      <MessageSquare className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-blue-400" />
+                      <input
+                        type="text"
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleChange}
+                        className="w-full pl-11 pr-4 py-3 bg-darkBlue-800 bg-opacity-50 border border-blue-500 border-opacity-30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                        placeholder="Enter the subject of your message"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Message Field */}
+                  <div className="space-y-2">
+                    <label className="block text-sm font-medium text-blue-300 text-left">
+                      Message *
+                    </label>
+                    <div className="relative">
+                      <MessageSquare className="absolute left-3 top-3 w-5 h-5 text-blue-400" />
+                      <textarea
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        rows={6}
+                        className="w-full pl-11 pr-4 py-3 bg-darkBlue-800 bg-opacity-50 border border-blue-500 border-opacity-30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none"
+                        placeholder="Tell us more about your inquiry..."
+                      />
+                    </div>
+                  </div>
+
+                  {/* Submit Button */}
+                  <div className="pt-4">
+                    <button
+                      onClick={handleSubmit}
+                      disabled={isSubmitting}
+                      className={`w-full md:w-auto px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-semibold rounded-lg transition-all duration-300 flex items-center justify-center space-x-3 mx-auto group ${
+                        isSubmitting 
+                          ? 'opacity-70 cursor-not-allowed' 
+                          : 'hover:scale-105 hover:shadow-lg hover:shadow-blue-500/30'
+                      }`}
                     >
-                      <Mail className="w-6 h-6 mr-4 flex-shrink-0" />
-                      <span className="group-hover:underline">thamindusri@ieee.org</span>
-                    </a>
-                    
-                    <div className="mt-4 pt-4 border-t border-blue-900 border-opacity-30">
-                      <p className="text-blue-300 text-sm">
-                        <strong>Thamindu Nirmal</strong> - Chair, IEEE CodeX Sri Lanka
-                      </p>
-                      <p className="text-gray-400 text-sm mt-2">
-                        Feel free to reach out for any inquiries about our programs, partnerships, or participation opportunities.
-                      </p>
-                    </div>
-                  </div>
-                  
-                  {/* Additional Info */}
-                  <div className="mt-8 grid md:grid-cols-2 gap-4 text-sm">
-                    <div className="bg-darkBlue-800 bg-opacity-30 rounded-lg p-4">
-                      <h4 className="text-blue-300 font-semibold mb-2">Training Sessions</h4>
-                      <p className="text-gray-400">Questions about our 12-session competitive programming series</p>
-                    </div>
-                    <div className="bg-darkBlue-800 bg-opacity-30 rounded-lg p-4">
-                      <h4 className="text-blue-300 font-semibold mb-2">Competitions</h4>
-                      <p className="text-gray-400">Inquiries about NOI, IEEEXtreme, and ICPC events</p>
-                    </div>
+                      {isSubmitting ? (
+                        <>
+                          <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                          <span>Sending...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
+                          <span>Send Message</span>
+                        </>
+                      )}
+                    </button>
                   </div>
                 </div>
               </GlassCard>
             </ParallaxEffect>
-          </div>
-
-          {/* Bottom Message */}
-          <div className={`mt-12 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <p className="text-gray-400 text-sm">
-              We typically respond within 24 hours. Looking forward to connecting with you!
-            </p>
           </div>
         </div>
       </div>
