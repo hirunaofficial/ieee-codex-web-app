@@ -96,18 +96,18 @@ export default function HeroSection() {
           
           {/* Left Content - Text and CTAs */}
           <div className="w-full md:w-3/5 lg:w-2/3 mb-8 md:mb-0 hero-animate text-left">
-            {/* IEEE Badge - Styled to match screenshot */}
-            <div className={`inline-flex items-center mb-3 md:mb-4 bg-white bg-opacity-95 px-4 py-2 rounded-full border border-blue-500 border-opacity-30 transition-all duration-1000 delay-300 transform ${
+            {/* IEEE Badge - Optimized for transparent background logo */}
+            <div className={`inline-flex items-center mb-3 md:mb-4 backdrop-blur-sm px-4 py-2 transition-all duration-1000 delay-300 transform ${
               isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
             }`}>
               <Image 
-                src="/images/ieee.png" 
+                src="/images/ieee-white.png" 
                 alt="IEEE Sri Lanka Section" 
                 width={120} 
                 height={20} 
-                className="drop-shadow-sm"
+                className="drop-shadow-lg"
                 style={{
-                  filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))'
+                  filter: 'drop-shadow(0 0 8px rgba(59, 130, 246, 0.4)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2))'
                 }}
               />
             </div>
