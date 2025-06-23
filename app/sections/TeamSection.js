@@ -7,6 +7,7 @@ import GlassCard from '@/app/components/GlassCard';
 
 export default function TeamSection() {
   const [isVisible, setIsVisible] = useState(false);
+  const [imageErrors, setImageErrors] = useState({});
   
   // Intersection Observer to trigger animations when section comes into view
   useEffect(() => {
@@ -20,15 +21,27 @@ export default function TeamSection() {
       { threshold: 0.1 }
     );
     
-    observer.observe(document.getElementById('team'));
+    const teamElement = document.getElementById('team');
+    if (teamElement) {
+      observer.observe(teamElement);
+    }
     return () => observer.disconnect();
   }, []);
 
-  // Team data with only LinkedIn
+  // Handle image load errors
+  const handleImageError = (memberName) => {
+    setImageErrors(prev => ({
+      ...prev,
+      [memberName]: true
+    }));
+  };
+
+  // Team data with images and LinkedIn
   const team = [
     { 
       name: "Thamindu Nirmal", 
-      position: "Chair", 
+      position: "Chair",
+      image: "/images/team/Thamindu Nirmal.jpg",
       social: {
         linkedin: "https://linkedin.com/in/thamindu-nirmal"
       },
@@ -36,7 +49,8 @@ export default function TeamSection() {
     },
     { 
       name: "Nethmi Fernando", 
-      position: "Secretary", 
+      position: "Secretary",
+      image: "/images/team/Nethmi Fernando.jpg",
       social: {
         linkedin: "https://linkedin.com/in/nethmi-fernando"
       },
@@ -44,7 +58,8 @@ export default function TeamSection() {
     },
     { 
       name: "Dineth Palliyaguru", 
-      position: "Public Visibility Vice Chair", 
+      position: "Public Visibility Vice Chair",
+      image: "/images/team/DinethPalliyaguru.jpg",
       social: {
         linkedin: "https://linkedin.com/in/dineth-palliyaguru"
       },
@@ -52,7 +67,8 @@ export default function TeamSection() {
     },
     { 
       name: "Mahima Bashitha", 
-      position: "Program and Delivery Vice Chair", 
+      position: "Program and Delivery Vice Chair",
+      image: "/images/team/Mahima Bhashitha.jpg",
       social: {
         linkedin: "https://linkedin.com/in/mahima-bashitha"
       },
@@ -60,7 +76,8 @@ export default function TeamSection() {
     },
     { 
       name: "Ishara Dias", 
-      position: "Finance and Partnerships Vice Chair", 
+      position: "Finance and Partnerships Vice Chair",
+      image: "/images/team/Ishara_Dias.jpg",
       social: {
         linkedin: "https://linkedin.com/in/ishara-dias"
       },
@@ -68,10 +85,16 @@ export default function TeamSection() {
     },
   ];
 
-  // All coordinators in one group
+  // Coordinators with their corresponding images
   const coordinators = [
-    "Hiruna Gallage", "Chamika Pathirana", "Adeepa Shamal", "Yashodha De Silva",
-    "Sasanka Savindi", "Madhawa Aloka", "Menura Basitha", "Unduli Senadheera"
+    { name: "Hiruna Gallage", image: "/images/team/Hiruna_Gallage.jpg" },
+    { name: "Chamika Pathirana", image: "/images/team/Chamika Lakshan.png" },
+    { name: "Adeepa Shamal", image: "/images/team/adeepa wickramasinghe.jpg" },
+    { name: "Yashodha De Silva", image: "/images/team/Yashodha De Silva.jpg" },
+    { name: "Sasanka Savindi", image: "/images/team/SasankaWakista.jpg" },
+    { name: "Madhawa Aloka", image: "/images/team/Madhawa_aloka.jpg" },
+    { name: "Menura Basitha", image: "/images/team/Menura Andrahennedi (2).jpg" },
+    { name: "Senaya Bandara", image: "/images/team/Senaya Bandara.jpg" }
   ];
 
   // Function to get initials from name
@@ -86,10 +109,49 @@ export default function TeamSection() {
       "from-green-500 to-blue-600",
       "from-blue-600 to-cyan-500",
       "from-indigo-600 to-blue-500",
-      "from-blue-500 to-teal-400"
+      "from-blue-500 to-teal-400",
+      "from-purple-600 to-pink-600",
+      "from-orange-500 to-red-500",
+      "from-teal-500 to-green-500"
     ];
     
     return gradients[index % gradients.length];
+  };
+
+  // Component for member avatar with fallback
+  const MemberAvatar = ({ member, index, size = "large" }) => {
+    const sizeClasses = {
+      large: "w-24 h-24",
+      small: "w-10 h-10"
+    };
+
+    const textSizeClasses = {
+      large: "text-xl",
+      small: "text-xs"
+    };
+
+    if (imageErrors[member.name] || !member.image) {
+      // Fallback to gradient avatar with initials
+      return (
+        <div className={`${sizeClasses[size]} bg-gradient-to-br ${getGradient(index)} rounded-full flex items-center justify-center mx-auto ${size === 'large' ? 'mb-6 blue-glow-subtle' : 'mb-2'}`}>
+          <span className={`text-white font-bold ${textSizeClasses[size]}`}>
+            {getInitials(member.name)}
+          </span>
+        </div>
+      );
+    }
+
+    return (
+      <div className={`${sizeClasses[size]} rounded-full overflow-hidden mx-auto ${size === 'large' ? 'mb-6 blue-glow-subtle' : 'mb-2'} bg-gradient-to-br ${getGradient(index)}`}>
+        <img
+          src={member.image}
+          alt={member.name}
+          className="w-full h-full object-cover"
+          onError={() => handleImageError(member.name)}
+          loading="lazy"
+        />
+      </div>
+    );
   };
 
   return (
@@ -142,12 +204,8 @@ export default function TeamSection() {
                     {/* Decorative background glow */}
                     <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600 rounded-full filter blur-3xl opacity-10"></div>
                     
-                    {/* Avatar with gradient */}
-                    <div className={`w-24 h-24 bg-gradient-to-br ${getGradient(index)} rounded-full flex items-center justify-center mx-auto mb-6 blue-glow-subtle`}>
-                      <span className="text-white font-bold text-xl">
-                        {getInitials(member.name)}
-                      </span>
-                    </div>
+                    {/* Avatar with image or gradient fallback */}
+                    <MemberAvatar member={member} index={index} size="large" />
                     
                     <h3 className="text-xl font-bold text-center mb-1 text-white">{member.name}</h3>
                     <p className="text-blue-300 text-center text-sm mb-4">{member.position}</p>
@@ -189,12 +247,8 @@ export default function TeamSection() {
                     hoverEffect="scale"
                     glowIntensity="subtle"
                   >
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center mb-2">
-                      <span className="text-white text-xs font-bold">
-                        {getInitials(coordinator)}
-                      </span>
-                    </div>
-                    <span className="text-gray-300 text-sm">{coordinator}</span>
+                    <MemberAvatar member={coordinator} index={index + team.length} size="small" />
+                    <span className="text-gray-300 text-sm">{coordinator.name}</span>
                   </GlassCard>
                 </ParallaxEffect>
               ))}
