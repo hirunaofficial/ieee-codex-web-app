@@ -108,12 +108,12 @@ export default function Footer() {
               />
               
               {/* IEEE Logo with white background */}
-              <div className="bg-white rounded-md px-2 py-1 flex items-center shadow-sm">
+              <div className="px-2 py-1 flex items-center shadow-sm">
                 <Image 
-                  src="/images/ieee.png" 
+                  src="/images/ieee-section-flag.png" 
                   alt="IEEE Sri Lanka" 
-                  width={60} 
-                  height={20} 
+                  width={160} 
+                  height={40} 
                   className="object-contain"
                 />
               </div>
