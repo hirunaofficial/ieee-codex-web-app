@@ -43,7 +43,7 @@ export default function ContactSection() {
     }));
   };
 
-  // Handle form submission with EmailJS
+  // Handle form submission with simple mailto
   const handleSubmit = async () => {
     // Basic validation
     if (!formData.name || !formData.email || !formData.subject || !formData.message) {
@@ -55,36 +55,31 @@ export default function ContactSection() {
     setSubmitStatus(null);
 
     try {
-      // Using EmailJS to send email
-      const emailParams = {
-        to_email: 'hirunaofficial@gmail.com',
-        from_name: formData.name,
-        from_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        reply_to: formData.email
-      };
-
-      // You'll need to replace these with your actual EmailJS credentials
-      const SERVICE_ID = 'your_service_id';
-      const TEMPLATE_ID = 'your_template_id';
-      const PUBLIC_KEY = 'your_public_key';
-
-      // Import EmailJS dynamically
-      const emailjs = await import('https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js');
+      // Create mailto link
+      const subject = encodeURIComponent(`Contact Form: ${formData.subject}`);
+      const body = encodeURIComponent(
+        `Name: ${formData.name}\n` +
+        `Email: ${formData.email}\n` +
+        `Subject: ${formData.subject}\n\n` +
+        `Message:\n${formData.message}\n\n` +
+        `---\nSent from IEEE CodeX Sri Lanka Contact Form`
+      );
       
-      const result = await emailjs.send(SERVICE_ID, TEMPLATE_ID, emailParams, PUBLIC_KEY);
+      const mailtoLink = `mailto:hirunaofficial@gmail.com?subject=${subject}&body=${body}`;
       
-      if (result.status === 200) {
+      // Open default email client
+      window.location.href = mailtoLink;
+      
+      // Show success message after a short delay
+      setTimeout(() => {
         setSubmitStatus('success');
         setFormData({ name: '', email: '', subject: '', message: '' });
-      } else {
-        setSubmitStatus('error');
-      }
+        setIsSubmitting(false);
+      }, 1000);
+      
     } catch (error) {
-      console.error('Email sending failed:', error);
+      console.error('Error opening email client:', error);
       setSubmitStatus('error');
-    } finally {
       setIsSubmitting(false);
     }
   };
@@ -132,7 +127,7 @@ export default function ContactSection() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4 blue-glow-text">Get In Touch</h2>
           <div className="w-16 h-1 bg-blue-500 mx-auto mb-8"></div>
           <p className="text-lg text-gray-300 mb-12">
-            Send us a message and we'll get back to you within 24 hours at hirunaofficial@gmail.com
+            Click send to open your email client and send message to hirunaofficial@gmail.com
           </p>
           
           {/* Contact Form */}
