@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Calendar } from 'lucide-react';
+import Image from 'next/image';
 import ParallaxEffect from '@/app/components/ParallaxEffect';
 import GlassCard from '@/app/components/GlassCard';
 
@@ -28,19 +29,25 @@ export default function CompetitionsSection() {
       name: "National Olympiad in Informatics (NOI)",
       description: "An annual algorithmic programming contest to select the national team for the International Olympiad in Informatics (IOI). Participants tackle complex computational problems requiring algorithmic thinking and coding skills.",
       timeline: "February to June 2025",
-      eligibility: "Open to all Sri Lankan school students"
+      eligibility: "Open to all Sri Lankan school students",
+      logo: "/images/noi.png",
+      website: "https://www.ioi-jp.org/" // Official IOI website
     },
     {
       name: "IEEEXtreme 19.0",
       description: "A global 24-hour hackathon where university teams compete in algorithm-based programming challenges. Develop skills in rapid problem-solving and collaborative coding under time pressure.",
       timeline: "July to November 2025",
-      eligibility: "IEEE undergraduate and graduate members"
+      eligibility: "IEEE undergraduate and graduate members",
+      logo: "/images/ieeextreme.png",
+      website: "https://ieeextreme.org/" // Official IEEEXtreme website
     },
     {
       name: "International Collegiate Programming Contest (ICPC)",
       description: "The world's largest algorithmic competition for university students. Teams of three compete to solve complex real-world problems with elegant solutions under strict time constraints.",
       timeline: "July to November 2025",
-      eligibility: "University students under 24 years of age"
+      eligibility: "University students under 24 years of age",
+      logo: "/images/icpc.png",
+      website: "https://icpc.global/" // Official ICPC website
     }
   ];
 
@@ -72,11 +79,15 @@ export default function CompetitionsSection() {
                   hoverEffect="3d"
                   glowIntensity="medium"
                 >
-                  {/* Competition Title Area */}
+                  {/* Competition Logo */}
                   <div className="mb-6 flex justify-center">
-                    <div className="w-16 h-16 rounded-full bg-blue-900 bg-opacity-70 flex items-center justify-center blue-glow-subtle">
-                      <span className="text-blue-400 font-bold text-2xl">{index + 1}</span>
-                    </div>
+                    <Image
+                      src={competition.logo}
+                      alt={`${competition.name} logo`}
+                      width={120}
+                      height={120}
+                      className="object-contain"
+                    />
                   </div>
 
                   <h3 className="text-xl font-bold mb-3 text-center text-blue-300 leading-tight">{competition.name}</h3>
@@ -96,12 +107,10 @@ export default function CompetitionsSection() {
                     
                     <div className="pt-4 border-t border-blue-900 border-opacity-70 mt-4">
                       <a 
-                        href="#contact" 
+                        href={competition.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="w-full block text-center py-2 bg-blue-900 bg-opacity-50 hover:bg-opacity-70 text-blue-300 rounded-md transition-all hover:text-white"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-                        }}
                       >
                         Learn more
                       </a>
