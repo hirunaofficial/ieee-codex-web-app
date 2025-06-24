@@ -1,13 +1,14 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { Calendar, Clock, ExternalLink, ArrowRight, BookOpen, X, Mail, User, Globe } from 'lucide-react';
+import { Calendar, Clock, ExternalLink, ArrowRight, BookOpen, X, Mail, User, Globe, Users, Target, TrendingUp } from 'lucide-react';
 import Image from 'next/image';
 import ParallaxEffect from '@/app/components/ParallaxEffect';
 import GlassCard from '@/app/components/GlassCard';
 
 export default function SessionsSection() {
   const [isVisible, setIsVisible] = useState(false);
+  const [activeTab, setActiveTab] = useState('training'); // 'training' or 'competency'
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -28,92 +29,114 @@ export default function SessionsSection() {
     return () => observer.disconnect();
   }, []);
 
-  const sessions = [
+  const trainingSessions = [
     {
       id: 1,
       title: "Introduction to Competitive Programming",
       description: "Kickstart your journey into the world of competitive programming. Learn what it is, why it matters, and how to get started effectively.",
       date: "June 28th, 2025",
-      slug: "intro-competitive-programming"
+      slug: "intro-competitive-programming",
+      type: "training"
     },
     {
       id: 2,
       title: "Time and Space Complexity",
       description: "Understanding how to analyze algorithms' efficiency through time and space complexity is a key skill for coding contests.",
       date: "July 5th, 2025",
-      slug: "time-space-complexity"
+      slug: "time-space-complexity",
+      type: "training"
     },
     {
       id: 3,
       title: "Arrays and Prefix Sums",
       description: "Learn to manipulate arrays efficiently and leverage prefix sums to solve range query problems with ease.",
       date: "July 12th, 2025",
-      slug: "arrays-prefix-sums"
+      slug: "arrays-prefix-sums",
+      type: "training"
     },
     {
       id: 4,
       title: "Sorting Algorithms",
       description: "Dive into essential sorting algorithms, their logic, and real-world applications in competitive coding.",
       date: "July 19th, 2025",
-      slug: "sorting-algorithms"
+      slug: "sorting-algorithms",
+      type: "training"
     },
     {
       id: 5,
       title: "Two-Pointer Techniques",
       description: "Master the two-pointer technique to solve array problems with reduced complexity and smarter logic.",
       date: "July 26th, 2025",
-      slug: "two-pointer-techniques"
+      slug: "two-pointer-techniques",
+      type: "training"
     },
     {
       id: 6,
       title: "Binary Search",
       description: "Discover the power of binary search beyond finding elements and apply it to solve complex problems efficiently.",
       date: "August 2nd, 2025",
-      slug: "binary-search"
+      slug: "binary-search",
+      type: "training"
     },
     {
       id: 7,
       title: "Greedy Algorithms",
       description: "Learn to make optimal choices at each step and build intuition for solving problems using greedy methods.",
       date: "August 9th, 2025",
-      slug: "greedy-algorithms"
+      slug: "greedy-algorithms",
+      type: "training"
     },
     {
       id: 8,
       title: "Recursion and Backtracking",
       description: "Tackle problems with recursive solutions and explore the power of backtracking in decision-making scenarios.",
       date: "August 16th, 2025",
-      slug: "recursion-backtracking"
+      slug: "recursion-backtracking",
+      type: "training"
     },
     {
       id: 9,
       title: "Dynamic Programming (Part I)",
       description: "Get introduced to dynamic programming, breaking problems into subproblems, and building efficient solutions.",
       date: "August 23rd, 2025",
-      slug: "dynamic-programming-1"
+      slug: "dynamic-programming-1",
+      type: "training"
     },
     {
       id: 10,
       title: "Dynamic Programming (Part II)",
       description: "Dive deeper into DP techniques with memoization, tabulation, and advanced problem types.",
       date: "August 30th, 2025",
-      slug: "dynamic-programming-2"
+      slug: "dynamic-programming-2",
+      type: "training"
     },
     {
       id: 11,
       title: "Graph Theory and Traversals",
       description: "Learn how to represent graphs and perform traversals like BFS and DFS to solve a range of problems.",
       date: "September 6th, 2025",
-      slug: "graph-theory-traversals"
+      slug: "graph-theory-traversals",
+      type: "training"
     },
     {
       id: 12,
       title: "Trees and Disjoint Set Union (DSU)",
       description: "Understand tree data structures and use the Disjoint Set Union technique for optimizing union-find problems.",
       date: "September 13th, 2025",
-      slug: "trees-dsu"
+      slug: "trees-dsu",
+      type: "training"
     }
   ];
+
+  const competencySession = {
+    id: 1,
+    title: "Competency Building Series",
+    description: "This series focuses on developing essential soft skills including time management, team management, and strategic planning. Participants will learn how to manage their schedules effectively, coordinate with team members, and plan tasks to achieve goals efficiently - skills essential for success in competitions, projects, and future careers. More sessions in this series will be announced soon.",
+    date: "Details Coming Soon",
+    slug: "competency-building-series",
+    type: "competency",
+    skills: ["Time Management", "Team Management", "Strategic Planning"]
+  };
 
   const [selectedSession, setSelectedSession] = useState(null);
 
@@ -125,6 +148,27 @@ export default function SessionsSection() {
     setSelectedSession(null);
   };
 
+  const currentSessions = activeTab === 'training' ? trainingSessions : [competencySession];
+  const seriesInfo = activeTab === 'training' 
+    ? {
+        title: "Technical Training Series",
+        subtitle: "Comprehensive training sessions designed to build strong programming foundations",
+        stats: [
+          { value: "12", label: "Comprehensive Sessions" },
+          { value: "3", label: "Months Duration" },
+          { value: "Online", label: "Expert-Led Sessions" }
+        ]
+      }
+    : {
+        title: "Competency Building Series",
+        subtitle: "Essential soft skills training for competitive programming and career success",
+        stats: [
+          { value: "TBA", label: "Number of Sessions" },
+          { value: "3", label: "Core Skills" },
+          { value: "Practical", label: "Hands-on Learning" }
+        ]
+      };
+
   return (
     <section id="sessions" className="py-24 bg-darkBlue-900 relative overflow-hidden">
       {/* Decorative elements */}
@@ -135,12 +179,12 @@ export default function SessionsSection() {
         <div className="grid-pattern absolute inset-0"></div>
       </div>
       
-      {/* Floating book symbols */}
+      {/* Floating book symbols - all blue */}
       <div className="absolute top-20 left-10 text-blue-500 opacity-20 animate-bounce-slow">
         <BookOpen size={32} />
       </div>
       <div className="absolute bottom-20 right-10 text-blue-500 opacity-20 animate-bounce-slow" style={{ animationDelay: '1s' }}>
-        <BookOpen size={32} />
+        <Users size={32} />
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
@@ -163,13 +207,45 @@ export default function SessionsSection() {
           </div>
           
           <div className="w-16 h-1 bg-blue-500 mx-auto mb-6"></div>
+
+          {/* Series Toggle Tabs - all blue theme */}
+          <div className="mb-8">
+            <div className="inline-flex p-1 bg-darkBlue-800 bg-opacity-60 rounded-lg">
+              <button
+                onClick={() => setActiveTab('training')}
+                className={`flex items-center px-6 py-3 rounded-md transition-all text-sm font-medium ${
+                  activeTab === 'training'
+                    ? 'bg-blue-600 bg-opacity-30 text-blue-300 border border-blue-500 border-opacity-40'
+                    : 'text-gray-300 hover:text-blue-300 hover:bg-darkBlue-700'
+                }`}
+              >
+                <BookOpen className="w-4 h-4 mr-2" />
+                Technical Training
+                <span className="ml-2 text-xs bg-darkBlue-700 px-2 py-0.5 rounded-full">12</span>
+              </button>
+              <button
+                onClick={() => setActiveTab('competency')}
+                className={`flex items-center px-6 py-3 rounded-md transition-all text-sm font-medium ${
+                  activeTab === 'competency'
+                    ? 'bg-blue-600 bg-opacity-30 text-blue-300 border border-blue-500 border-opacity-40'
+                    : 'text-gray-300 hover:text-blue-300 hover:bg-darkBlue-700'
+                }`}
+              >
+                <Users className="w-4 h-4 mr-2" />
+                Competency Building
+                <span className="ml-2 text-xs bg-darkBlue-700 px-2 py-0.5 rounded-full">TBA</span>
+              </button>
+            </div>
+          </div>
+
           <p className="text-lg text-gray-300">
-            Comprehensive training sessions are designed to build strong programming foundations.
+            {seriesInfo.subtitle}
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {sessions.map((session, index) => (
+        {/* Sessions Grid */}
+        <div className={`grid ${activeTab === 'competency' ? 'lg:grid-cols-1 max-w-2xl mx-auto' : 'md:grid-cols-2 lg:grid-cols-3'} gap-6 lg:gap-8`}>
+          {currentSessions.map((session, index) => (
             <div 
               key={session.id}
               className={`transition-all duration-1000 delay-${200 + index * 100} ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
@@ -181,18 +257,40 @@ export default function SessionsSection() {
                   glowIntensity="medium"
                   onClick={() => handleSessionClick(session)}
                 >
-                  {/* Session Number Badge */}
+                  {/* Session Number Badge - all blue */}
                   <div className="flex justify-between items-start mb-4">
                     <div className="w-12 h-12 rounded-full bg-blue-900 bg-opacity-70 flex items-center justify-center blue-glow-subtle">
-                      <span className="text-blue-400 font-bold text-lg">{session.id}</span>
+                      <span className="text-blue-400 font-bold text-lg">
+                        {session.id}
+                      </span>
                     </div>
                     <div className="text-blue-400 opacity-70">
-                      <BookOpen className="w-5 h-5" />
+                      {activeTab === 'training' ? <BookOpen className="w-5 h-5" /> : <Users className="w-5 h-5" />}
                     </div>
                   </div>
 
-                  <h3 className="text-xl font-bold mb-3 text-blue-300 leading-tight">{session.title}</h3>
-                  <p className="text-gray-300 mb-6 text-sm leading-relaxed flex-grow">{session.description}</p>
+                  <h3 className="text-xl font-bold mb-3 text-blue-300 leading-tight">
+                    {session.title}
+                  </h3>
+                  <p className="text-gray-300 mb-6 text-sm leading-relaxed flex-grow">
+                    {session.description}
+                  </p>
+                  
+                  {/* Skills badges for competency session - blue theme */}
+                  {session.skills && (
+                    <div className="mb-6">
+                      <div className="flex flex-wrap gap-2">
+                        {session.skills.map((skill, skillIndex) => (
+                          <span 
+                            key={skillIndex}
+                            className="text-xs bg-blue-900 bg-opacity-30 text-blue-300 px-2 py-1 rounded-full border border-blue-500 border-opacity-30"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                   
                   {/* Session details */}
                   <div className="mt-auto space-y-4">
@@ -203,7 +301,9 @@ export default function SessionsSection() {
                     
                     <div className="pt-4 border-t border-blue-900 border-opacity-70">
                       <div className="flex items-center justify-between">
-                        <span className="text-xs text-gray-400">Session {session.id} of 12</span>
+                        <span className="text-xs text-gray-400">
+                          {activeTab === 'training' ? `Session ${session.id} of 12` : 'Competency Series'}
+                        </span>
                         <ArrowRight className="w-4 h-4 text-blue-400 group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>
@@ -214,26 +314,27 @@ export default function SessionsSection() {
           ))}
         </div>
         
-        {/* Series Overview */}
+        {/* Series Overview - blue theme */}
         <div className={`mt-16 text-center transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <GlassCard className="p-8 rounded-xl max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold text-blue-300 mb-4">About the Series</h3>
+            <h3 className="text-2xl font-bold text-blue-300 mb-4">
+              About the {seriesInfo.title}
+            </h3>
             <p className="text-gray-300 mb-6 leading-relaxed">
-              This comprehensive 12-session series is designed to take you from the basics of competitive programming to advanced algorithmic concepts. Each session builds upon previous knowledge, ensuring a structured learning path that prepares you for national and international programming competitions.
+              {activeTab === 'training' 
+                ? "This comprehensive 12-session series is designed to take you from the basics of competitive programming to advanced algorithmic concepts. Each session builds upon previous knowledge, ensuring a structured learning path that prepares you for national and international programming competitions."
+                : "This specialized series focuses on developing essential soft skills that complement technical abilities. Learn to manage time effectively, lead teams successfully, and plan strategically - skills that are crucial for competitive programming success and professional career advancement. Additional sessions in this series will be announced soon."
+              }
             </p>
             <div className="grid md:grid-cols-3 gap-6 text-center">
-              <div>
-                <div className="text-3xl font-bold text-blue-400 mb-2">12</div>
-                <div className="text-sm text-gray-400">Comprehensive Sessions</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-blue-400 mb-2">3</div>
-                <div className="text-sm text-gray-400">Months Duration</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-blue-400 mb-2">Online</div>
-                <div className="text-sm text-gray-400">Expert-Led Sessions</div>
-              </div>
+              {seriesInfo.stats.map((stat, index) => (
+                <div key={index}>
+                  <div className="text-3xl font-bold text-blue-400 mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-gray-400">{stat.label}</div>
+                </div>
+              ))}
             </div>
           </GlassCard>
         </div>
@@ -244,18 +345,22 @@ export default function SessionsSection() {
         <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
           <div className="bg-darkBlue-900 rounded-2xl border border-blue-500 border-opacity-30 max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl">
             <div className="p-8">
-              {/* Header */}
+              {/* Header - blue theme */}
               <div className="flex justify-between items-start mb-6">
                 <div className="flex-1">
                   <div className="flex items-center mb-3">
                     <div className="w-12 h-12 rounded-full bg-blue-900 bg-opacity-70 flex items-center justify-center mr-4 blue-glow-subtle">
-                      <span className="text-blue-400 font-bold text-lg">{selectedSession.id}</span>
+                      <span className="text-blue-400 font-bold text-lg">
+                        {selectedSession.id}
+                      </span>
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-white leading-tight">
                         {selectedSession.title}
                       </h3>
-                      <p className="text-blue-300 text-sm mt-1">Session {selectedSession.id} of 12</p>
+                      <p className="text-blue-300 text-sm mt-1">
+                        {selectedSession.type === 'training' ? `Session ${selectedSession.id} of 12` : 'Competency Series'}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -268,16 +373,42 @@ export default function SessionsSection() {
                 </button>
               </div>
 
-              {/* Date Badge */}
+              {/* Date Badge - blue theme */}
               <div className="flex items-center mb-6 bg-blue-900 bg-opacity-30 rounded-lg p-3 border border-blue-500 border-opacity-30">
                 <Calendar className="w-5 h-5 text-blue-400 mr-3" />
-                <span className="text-blue-300 font-medium">{selectedSession.date}</span>
+                <span className="text-blue-300 font-medium">
+                  {selectedSession.date}
+                </span>
               </div>
+
+              {/* Skills (for competency session) - blue theme */}
+              {selectedSession.skills && (
+                <div className="mb-6">
+                  <h4 className="text-white font-semibold mb-3 flex items-center">
+                    <Target className="w-4 h-4 mr-2 text-blue-400" />
+                    Core Skills Focus
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedSession.skills.map((skill, skillIndex) => (
+                      <span 
+                        key={skillIndex}
+                        className="text-sm bg-blue-900 bg-opacity-30 text-blue-300 px-3 py-1 rounded-full border border-blue-500 border-opacity-30"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Description */}
               <div className="mb-6">
                 <h4 className="text-white font-semibold mb-3 flex items-center">
-                  <BookOpen className="w-4 h-4 mr-2 text-blue-400" />
+                  {selectedSession.type === 'training' ? (
+                    <BookOpen className="w-4 h-4 mr-2 text-blue-400" />
+                  ) : (
+                    <TrendingUp className="w-4 h-4 mr-2 text-blue-400" />
+                  )}
                   About This Session
                 </h4>
                 <p className="text-gray-300 leading-relaxed">
@@ -369,6 +500,13 @@ export default function SessionsSection() {
           </div>
         </div>
       )}
+
+      {/* Custom styles - only blue glow */}
+      <style jsx>{`
+        .blue-glow-subtle {
+          box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+        }
+      `}</style>
     </section>
   );
 }
