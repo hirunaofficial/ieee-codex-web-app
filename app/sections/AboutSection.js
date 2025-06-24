@@ -74,6 +74,9 @@ export default function AboutSection() {
               <p>
                 In addition to hosting competitions, we offer a comprehensive <strong className="text-blue-400">12-session training series</strong> designed for both school students and undergraduates. These sessions cover everything from basic competitive programming concepts to advanced algorithms like dynamic programming and graph theory, ensuring participants are well-prepared for national and international competitions.
               </p>
+              <p>
+                We also provide a specialized <strong className="text-blue-400">Competency Building series</strong> focused on developing essential soft skills including time management, team management, and strategic planning. These skills complement technical abilities and are crucial for success in competitive programming environments and professional career advancement.
+              </p>
             </div>
           </GlassCard>
         </div>
@@ -98,16 +101,18 @@ export default function AboutSection() {
               </div>
               
               <p className="text-gray-300 leading-relaxed mb-6">
-                Our comprehensive 12-session training series is designed to build a strong foundation in competitive programming. Each session features expert speakers who guide participants through essential algorithmic concepts and problem-solving techniques.
+                Our comprehensive training program includes a 12-session technical series building strong foundations in competitive programming, plus a specialized competency building series. Expert speakers guide participants through essential algorithmic concepts, problem-solving techniques, and crucial soft skills for career success.
               </p>
               
               <div className="bg-darkBlue-800 bg-opacity-50 rounded-lg p-4 mb-6">
                 <h4 className="text-white font-semibold mb-3 text-sm">Key Features:</h4>
                 <ul className="text-gray-300 text-sm space-y-2">
-                  <li>• 12 comprehensive online sessions</li>
+                  <li>• 12 comprehensive technical training sessions</li>
+                  <li>• Multiple competency building sessions (details coming soon)</li>
                   <li>• Expert speakers and industry professionals</li>
                   <li>• From basics to advanced algorithms</li>
                   <li>• Interactive problem-solving workshops</li>
+                  <li>• Soft skills development (time, team & strategic management)</li>
                   <li>• All skill levels welcome</li>
                 </ul>
               </div>
@@ -206,7 +211,7 @@ export default function AboutSection() {
             </p>
             <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
               <div className="bg-blue-900 bg-opacity-30 rounded-lg px-4 py-2">
-                <div className="text-2xl font-bold text-blue-400">12</div>
+                <div className="text-2xl font-bold text-blue-400">12+</div>
                 <div className="text-xs text-gray-400">Training Sessions</div>
               </div>
               <div className="bg-blue-900 bg-opacity-30 rounded-lg px-4 py-2">
