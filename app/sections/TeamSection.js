@@ -70,7 +70,7 @@ export default function TeamSection() {
       position: "Vice Chair - Program and Delivery",
       image: "/images/team/Mahima Bhashitha.jpg",
       social: {
-        linkedin: "https://linkedin.com/in/mahima-bashitha"
+        linkedin: "http://linkedin.com/in/mahima-bhashitha-558738288"
       },
       bio: "Overseeing all programming events and competitions for maximum participant value."
     },
@@ -88,7 +88,7 @@ export default function TeamSection() {
       position: "Vice Chair - Finance and Partnership",
       image: "/images/team/Ishara_Dias.jpg",
       social: {
-        linkedin: "https://linkedin.com/in/ishara-dias"
+        linkedin: "http://www.linkedin.com/in/ishara-dias-49697b24a"
       },
       bio: "Managing financial resources and developing strategic partnerships with industry leaders."
     },
@@ -98,12 +98,12 @@ export default function TeamSection() {
   const coordinators = [
     { name: "Hiruna Gallage", image: "/images/team/Hiruna_Gallage.jpg", linkedin: "https://www.linkedin.com/in/hirunaofficial/" },
     { name: "Chamika Pathirana", image: "/images/team/Chamika Lakshan.png", linkedin: null },
-    { name: "Adeepa Shamal", image: "/images/team/adeepa wickramasinghe.jpg", linkedin: null },
-    { name: "Yashodha De Silva", image: "/images/team/Yashodha De Silva.jpg", linkedin: null },
-    { name: "Sasanka Savindi", image: "/images/team/SasankaWakista.jpg", linkedin: null },
-    { name: "Madhawa Aloka", image: "/images/team/Madhawa_aloka.jpg", linkedin: null },
-    { name: "Menura Basitha", image: "/images/team/Menura Andrahennedi (2).jpg", linkedin: null },
-    { name: "Senaya Bandara", image: "/images/team/Senaya Bandara.jpg", linkedin: null }
+    { name: "Adeepa Shamal", image: "/images/team/adeepa wickramasinghe.jpg", linkedin: "https://www.linkedin.com/in/adeepa-shamal-5420a8282" },
+    { name: "Yashodha De Silva", image: "/images/team/Yashodha De Silva.jpg", linkedin: "http://www.linkedin.com/in/yashodha-de-silva-b77581371" },
+    { name: "Sasanka Wakista", image: "/images/team/SasankaWakista.jpg", linkedin: "https://www.linkedin.com/in/sasanka-wakista-4bb248206" },
+    { name: "Madhawa Aloka", image: "/images/team/Madhawa_aloka.jpg", linkedin: "https://www.linkedin.com/in/madhawa-aloka-707940271/" },
+    { name: "Menura Andrahennedi", image: "/images/team/Menura Andrahennedi (2).jpg", linkedin: "https://www.linkedin.com/in/menura-andrahennedi-914a87280" },
+    { name: "Senaya Bandara", image: "/images/team/Senaya Bandara.jpg", linkedin: "https://www.linkedin.com/in/senaya-bandara-04aa75251/" }
   ];
 
   // Function to get initials from name
