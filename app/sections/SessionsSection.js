@@ -32,98 +32,110 @@ export default function SessionsSection() {
   const trainingSessions = [
     {
       id: 1,
-      title: "Introduction to Competitive Programming",
-      description: "Kickstart your journey into the world of competitive programming. Learn what it is, why it matters, and how to get started effectively.",
-      date: "June 28th, 2025",
-      slug: "intro-competitive-programming",
+      title: "Introduction to Competitive Programming & Time and Space Complexity",
+      description: "Kickstart your journey into competitive programming and learn to analyze algorithm efficiency through time and space complexity analysis.",
+      weekDates: "Week 1: July 5-6, 2025 (Sat-Sun)",
+      topics: ["Introduction to Competitive Programming", "Time and Space Complexity"],
+      slug: "week-1-intro-complexity",
       type: "training"
     },
     {
       id: 2,
-      title: "Time and Space Complexity",
-      description: "Understanding how to analyze algorithms' efficiency through time and space complexity is a key skill for coding contests.",
-      date: "July 5th, 2025",
-      slug: "time-space-complexity",
+      title: "Two Pointer Techniques & Arrays and Prefix Sums",
+      description: "Master efficient array manipulation techniques including two-pointer methods and prefix sums for range query problems.",
+      weekDates: "Week 2: July 12-13, 2025 (Sat-Sun)",
+      topics: ["Two Pointer Techniques", "Arrays and Prefix Sums"],
+      slug: "week-2-arrays-pointers",
       type: "training"
     },
     {
       id: 3,
-      title: "Arrays and Prefix Sums",
-      description: "Learn to manipulate arrays efficiently and leverage prefix sums to solve range query problems with ease.",
-      date: "July 12th, 2025",
-      slug: "arrays-prefix-sums",
+      title: "Sorting Algorithms & Binary Search",
+      description: "Dive into essential sorting algorithms and discover the power of binary search beyond simple element finding.",
+      weekDates: "Week 3: July 19-20, 2025 (Sat-Sun)",
+      topics: ["Sorting Algorithms", "Binary Search"],
+      slug: "week-3-sorting-binary",
       type: "training"
     },
     {
       id: 4,
-      title: "Sorting Algorithms",
-      description: "Dive into essential sorting algorithms, their logic, and real-world applications in competitive coding.",
-      date: "July 19th, 2025",
-      slug: "sorting-algorithms",
+      title: "Recursion and Backtracking",
+      description: "Tackle problems with recursive solutions and explore the power of backtracking in decision-making scenarios.",
+      weekDates: "Week 4: July 26-27, 2025 (Sat-Sun)",
+      topics: ["Recursion and Backtracking"],
+      slug: "week-4-recursion-backtracking",
       type: "training"
     },
     {
       id: 5,
-      title: "Two-Pointer Techniques",
-      description: "Master the two-pointer technique to solve array problems with reduced complexity and smarter logic.",
-      date: "July 26th, 2025",
-      slug: "two-pointer-techniques",
+      title: "Advanced Recursion & Greedy Algorithms",
+      description: "Continue with advanced recursion techniques and learn to make optimal choices using greedy methods.",
+      weekDates: "Week 5: August 2-3, 2025 (Sat-Sun)",
+      topics: ["Recursion and Backtracking", "Greedy Algorithms"],
+      slug: "week-5-recursion-greedy",
       type: "training"
     },
     {
       id: 6,
-      title: "Binary Search",
-      description: "Discover the power of binary search beyond finding elements and apply it to solve complex problems efficiently.",
-      date: "August 2nd, 2025",
-      slug: "binary-search",
+      title: "Greedy Algorithms Deep Dive",
+      description: "Build strong intuition for solving complex problems using greedy algorithmic approaches.",
+      weekDates: "Week 6: August 9-10, 2025 (Sat-Sun)",
+      topics: ["Greedy Algorithms"],
+      slug: "week-6-greedy-advanced",
       type: "training"
     },
     {
       id: 7,
-      title: "Greedy Algorithms",
-      description: "Learn to make optimal choices at each step and build intuition for solving problems using greedy methods.",
-      date: "August 9th, 2025",
-      slug: "greedy-algorithms",
+      title: "Dynamic Programming (Part I)",
+      description: "Get introduced to dynamic programming, breaking problems into subproblems, and building efficient solutions.",
+      weekDates: "Week 7: August 16-17, 2025 (Sat-Sun)",
+      topics: ["Dynamic Programming (Part I)"],
+      slug: "week-7-dp-part1",
       type: "training"
     },
     {
       id: 8,
-      title: "Recursion and Backtracking",
-      description: "Tackle problems with recursive solutions and explore the power of backtracking in decision-making scenarios.",
-      date: "August 16th, 2025",
-      slug: "recursion-backtracking",
+      title: "Dynamic Programming Comprehensive",
+      description: "Master both foundational and advanced DP techniques with memoization, tabulation, and complex problem types.",
+      weekDates: "Week 8: August 23-24, 2025 (Sat-Sun)",
+      topics: ["Dynamic Programming (Part I)", "Dynamic Programming (Part II)"],
+      slug: "week-8-dp-comprehensive",
       type: "training"
     },
     {
       id: 9,
-      title: "Dynamic Programming (Part I)",
-      description: "Get introduced to dynamic programming, breaking problems into subproblems, and building efficient solutions.",
-      date: "August 23rd, 2025",
-      slug: "dynamic-programming-1",
+      title: "Dynamic Programming (Part II)",
+      description: "Dive deeper into advanced DP techniques and tackle complex dynamic programming challenges.",
+      weekDates: "Week 9: August 30-31, 2025 (Sat-Sun)",
+      topics: ["Dynamic Programming (Part II)"],
+      slug: "week-9-dp-part2",
       type: "training"
     },
     {
       id: 10,
-      title: "Dynamic Programming (Part II)",
-      description: "Dive deeper into DP techniques with memoization, tabulation, and advanced problem types.",
-      date: "August 30th, 2025",
-      slug: "dynamic-programming-2",
+      title: "Trees and Disjoint Set Union (DSU)",
+      description: "Understand tree data structures and use the Disjoint Set Union technique for optimizing union-find problems.",
+      weekDates: "Week 10: September 6-7, 2025 (Sat-Sun)",
+      topics: ["Trees and Disjoint Set Union (DSU)"],
+      slug: "week-10-trees-dsu",
       type: "training"
     },
     {
       id: 11,
-      title: "Graph Theory and Traversals",
-      description: "Learn how to represent graphs and perform traversals like BFS and DFS to solve a range of problems.",
-      date: "September 6th, 2025",
-      slug: "graph-theory-traversals",
+      title: "Advanced Trees & Graph Theory Introduction",
+      description: "Explore advanced tree concepts and begin learning graph representation and traversal algorithms.",
+      weekDates: "Week 11: September 13-14, 2025 (Sat-Sun)",
+      topics: ["Trees and Disjoint Set Union (DSU)", "Graph Theory and Traversals"],
+      slug: "week-11-trees-graphs",
       type: "training"
     },
     {
       id: 12,
-      title: "Trees and Disjoint Set Union (DSU)",
-      description: "Understand tree data structures and use the Disjoint Set Union technique for optimizing union-find problems.",
-      date: "September 13th, 2025",
-      slug: "trees-dsu",
+      title: "Graph Theory and Traversals",
+      description: "Master graph representation and perform traversals like BFS and DFS to solve a comprehensive range of problems.",
+      weekDates: "Week 12: September 20-21, 2025 (Sat-Sun)",
+      topics: ["Graph Theory and Traversals"],
+      slug: "week-12-graph-traversals",
       type: "training"
     }
   ];
@@ -132,7 +144,7 @@ export default function SessionsSection() {
     id: 1,
     title: "Competency Building Series",
     description: "This series focuses on developing essential soft skills including time management, team management, and strategic planning. Participants will learn how to manage their schedules effectively, coordinate with team members, and plan tasks to achieve goals efficiently - skills essential for success in competitions, projects, and future careers. More sessions in this series will be announced soon.",
-    date: "Details Coming Soon",
+    weekDates: "Details Coming Soon",
     slug: "competency-building-series",
     type: "competency",
     skills: ["Time Management", "Team Management", "Strategic Planning"]
@@ -152,9 +164,9 @@ export default function SessionsSection() {
   const seriesInfo = activeTab === 'training' 
     ? {
         title: "Technical Training Series",
-        subtitle: "Comprehensive training sessions designed to build strong programming foundations",
+        subtitle: "12-week comprehensive training program designed to build strong programming foundations",
         stats: [
-          { value: "12", label: "Comprehensive Sessions" },
+          { value: "12", label: "Weekly Sessions" },
           { value: "3", label: "Months Duration" },
           { value: "Online", label: "Expert-Led Sessions" }
         ]
@@ -221,7 +233,7 @@ export default function SessionsSection() {
               >
                 <BookOpen className="w-4 h-4 mr-2" />
                 Technical Training
-                <span className="ml-2 text-xs bg-darkBlue-700 px-2 py-0.5 rounded-full">12</span>
+                <span className="ml-2 text-xs bg-darkBlue-700 px-2 py-0.5 rounded-full">12 Weeks</span>
               </button>
               <button
                 onClick={() => setActiveTab('competency')}
@@ -261,7 +273,7 @@ export default function SessionsSection() {
                   <div className="flex justify-between items-start mb-4">
                     <div className="w-12 h-12 rounded-full bg-blue-900 bg-opacity-70 flex items-center justify-center blue-glow-subtle">
                       <span className="text-blue-400 font-bold text-lg">
-                        {session.id}
+                        {activeTab === 'training' ? `W${session.id}` : session.id}
                       </span>
                     </div>
                     <div className="text-blue-400 opacity-70">
@@ -272,9 +284,25 @@ export default function SessionsSection() {
                   <h3 className="text-xl font-bold mb-3 text-blue-300 leading-tight">
                     {session.title}
                   </h3>
-                  <p className="text-gray-300 mb-6 text-sm leading-relaxed flex-grow">
+                  <p className="text-gray-300 mb-4 text-sm leading-relaxed flex-grow">
                     {session.description}
                   </p>
+                  
+                  {/* Topics covered - for training sessions */}
+                  {session.topics && (
+                    <div className="mb-4">
+                      <div className="flex flex-wrap gap-1">
+                        {session.topics.map((topic, topicIndex) => (
+                          <span 
+                            key={topicIndex}
+                            className="text-xs bg-blue-900 bg-opacity-30 text-blue-300 px-2 py-1 rounded-full border border-blue-500 border-opacity-30"
+                          >
+                            {topic}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                   
                   {/* Skills badges for competency session - blue theme */}
                   {session.skills && (
@@ -296,13 +324,13 @@ export default function SessionsSection() {
                   <div className="mt-auto space-y-4">
                     <div className="flex items-center text-blue-400 mb-3">
                       <Calendar className="h-4 w-4 mr-2 flex-shrink-0" />
-                      <span className="text-sm font-medium">{session.date}</span>
+                      <span className="text-sm font-medium">{session.weekDates}</span>
                     </div>
                     
                     <div className="pt-4 border-t border-blue-900 border-opacity-70">
                       <div className="flex items-center justify-between">
                         <span className="text-xs text-gray-400">
-                          {activeTab === 'training' ? `Session ${session.id} of 12` : 'Competency Series'}
+                          {activeTab === 'training' ? `Week ${session.id} of 12` : 'Competency Series'}
                         </span>
                         <ArrowRight className="w-4 h-4 text-blue-400 group-hover:translate-x-1 transition-transform" />
                       </div>
@@ -322,11 +350,11 @@ export default function SessionsSection() {
             </h3>
             <p className="text-gray-300 mb-6 leading-relaxed">
               {activeTab === 'training' 
-                ? "This comprehensive 12-session series is designed to take you from the basics of competitive programming to advanced algorithmic concepts. Each session builds upon previous knowledge, ensuring a structured learning path that prepares you for national and international programming competitions."
+                ? "This comprehensive 12-week series is designed to take you from the basics of competitive programming to advanced algorithmic concepts. Each week features Saturday and Sunday sessions (1.5 hours each), ensuring a structured learning path that prepares you for national and international programming competitions."
                 : "This specialized series focuses on developing essential soft skills that complement technical abilities. Learn to manage time effectively, lead teams successfully, and plan strategically - skills that are crucial for competitive programming success and professional career advancement. Additional sessions in this series will be announced soon."
               }
             </p>
-            <div className="grid md:grid-cols-3 gap-6 text-center">
+            <div className="grid md:grid-cols-3 gap-6 text-center mb-8">
               {seriesInfo.stats.map((stat, index) => (
                 <div key={index}>
                   <div className="text-3xl font-bold text-blue-400 mb-2">
@@ -336,6 +364,29 @@ export default function SessionsSection() {
                 </div>
               ))}
             </div>
+            
+            {/* Prominent Join Sessions Button */}
+            {activeTab === 'training' && (
+              <div className="bg-gradient-to-r from-blue-900 to-blue-800 bg-opacity-50 rounded-xl p-6 border border-blue-500 border-opacity-40 blue-glow-subtle">
+                <h4 className="text-xl font-bold text-blue-300 mb-3">
+                  Ready to Start Your Journey?
+                </h4>
+                <p className="text-gray-300 mb-6">
+                  Join our comprehensive 12-week training series and master competitive programming
+                </p>
+                <a 
+                  href="https://lu.ma/owts25tf"
+                  className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl font-semibold transition-all border border-blue-500 group blue-glow-subtle hover:scale-105"
+                >
+                  <ExternalLink className="w-5 h-5 mr-3 group-hover:scale-110 transition-transform" />
+                  Join Session Series
+                  <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
+                </a>
+                <p className="text-blue-300 text-sm mt-4">
+                  Register now to secure your spot and get all session details
+                </p>
+              </div>
+            )}
           </GlassCard>
         </div>
       </div>
@@ -351,7 +402,7 @@ export default function SessionsSection() {
                   <div className="flex items-center mb-3">
                     <div className="w-12 h-12 rounded-full bg-blue-900 bg-opacity-70 flex items-center justify-center mr-4 blue-glow-subtle">
                       <span className="text-blue-400 font-bold text-lg">
-                        {selectedSession.id}
+                        {selectedSession.type === 'training' ? `W${selectedSession.id}` : selectedSession.id}
                       </span>
                     </div>
                     <div>
@@ -359,7 +410,7 @@ export default function SessionsSection() {
                         {selectedSession.title}
                       </h3>
                       <p className="text-blue-300 text-sm mt-1">
-                        {selectedSession.type === 'training' ? `Session ${selectedSession.id} of 12` : 'Competency Series'}
+                        {selectedSession.type === 'training' ? `Week ${selectedSession.id} of 12` : 'Competency Series'}
                       </p>
                     </div>
                   </div>
@@ -377,9 +428,29 @@ export default function SessionsSection() {
               <div className="flex items-center mb-6 bg-blue-900 bg-opacity-30 rounded-lg p-3 border border-blue-500 border-opacity-30">
                 <Calendar className="w-5 h-5 text-blue-400 mr-3" />
                 <span className="text-blue-300 font-medium">
-                  {selectedSession.date}
+                  {selectedSession.weekDates}
                 </span>
               </div>
+
+              {/* Topics covered (for training sessions) - blue theme */}
+              {selectedSession.topics && (
+                <div className="mb-6">
+                  <h4 className="text-white font-semibold mb-3 flex items-center">
+                    <BookOpen className="w-4 h-4 mr-2 text-blue-400" />
+                    Topics Covered
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedSession.topics.map((topic, topicIndex) => (
+                      <span 
+                        key={topicIndex}
+                        className="text-sm bg-blue-900 bg-opacity-30 text-blue-300 px-3 py-1 rounded-full border border-blue-500 border-opacity-30"
+                      >
+                        {topic}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Skills (for competency session) - blue theme */}
               {selectedSession.skills && (
@@ -409,7 +480,7 @@ export default function SessionsSection() {
                   ) : (
                     <TrendingUp className="w-4 h-4 mr-2 text-blue-400" />
                   )}
-                  About This Session
+                  About This {selectedSession.type === 'training' ? 'Week' : 'Session'}
                 </h4>
                 <p className="text-gray-300 leading-relaxed">
                   {selectedSession.description}
@@ -433,16 +504,16 @@ export default function SessionsSection() {
                   <div className="flex items-center justify-between py-2">
                     <div className="flex items-center">
                       <Calendar className="w-4 h-4 text-gray-400 mr-3" />
-                      <span className="text-gray-400">Date:</span>
+                      <span className="text-gray-400">Schedule:</span>
                     </div>
-                    <span className="text-blue-300 font-medium">{selectedSession.date}</span>
+                    <span className="text-blue-300 font-medium">{selectedSession.weekDates}</span>
                   </div>
                   <div className="flex items-center justify-between py-2">
                     <div className="flex items-center">
                       <Clock className="w-4 h-4 text-gray-400 mr-3" />
                       <span className="text-gray-400">Time:</span>
                     </div>
-                    <span className="text-blue-300 font-medium bg-blue-900 bg-opacity-30 px-3 py-1 rounded-full text-sm">TBA</span>
+                    <span className="text-blue-300 font-medium bg-blue-900 bg-opacity-30 px-3 py-1 rounded-full text-sm">1.5 hrs each day</span>
                   </div>
                   <div className="flex items-center justify-between py-2">
                     <div className="flex items-center">
@@ -454,17 +525,17 @@ export default function SessionsSection() {
                 </div>
               </div>
 
-              {/* Register Button */}
+              {/* Join Sessions Button */}
               <div className="mb-6">
-                <button 
-                  disabled
-                  className="w-full py-4 bg-gradient-to-r from-gray-600 to-gray-700 text-gray-300 rounded-xl font-semibold cursor-not-allowed transition-all flex items-center justify-center border border-gray-600"
+                <a 
+                  href="https://lu.ma/owts25tf"
+                  className="w-full py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl font-semibold transition-all flex items-center justify-center border border-blue-500 group blue-glow-subtle"
                 >
-                  <Clock className="w-5 h-5 mr-2" />
-                  Registration Opens Soon
-                </button>
-                <p className="text-gray-400 text-sm text-center mt-2">
-                  We'll notify you when registration becomes available
+                  <ExternalLink className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+                  Join Session Series
+                </a>
+                <p className="text-blue-300 text-sm text-center mt-2">
+                  Click to register and get all session details
                 </p>
               </div>
 
@@ -475,7 +546,7 @@ export default function SessionsSection() {
                   <h4 className="text-blue-300 font-semibold">Need More Information?</h4>
                 </div>
                 <p className="text-gray-300 text-sm mb-4">
-                  Have questions about this session? Contact our team for detailed information and updates.
+                  Have questions about this {selectedSession.type === 'training' ? 'week' : 'session'}? Contact our team for detailed information and updates.
                 </p>
                 <div className="space-y-3">
                   <a 
