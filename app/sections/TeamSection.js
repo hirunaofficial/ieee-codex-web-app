@@ -61,7 +61,7 @@ export default function TeamSection() {
       position: "Secretary",
       image: "/images/team/Nethmi Fernando.jpg",
       social: {
-        linkedin: "https://linkedin.com/in/nethmi-fernando"
+        linkedin: "https://www.linkedin.com/in/nethmilakshimafernando/"
       },
       bio: "Coordinating all administrative aspects and ensuring smooth operations of our initiatives."
     },
