@@ -57,7 +57,7 @@ export default function Footer() {
   // Social media links
   const socialLinks = [
     { name: "Facebook", url: "https://www.facebook.com/share/1Bq1tN26qg/", icon: <Facebook className="w-5 h-5" /> },
-    { name: "Instagram", url: "https://www.facebook.com/share/1Bq1tN26qg/", icon: <Instagram className="w-5 h-5" /> },
+    { name: "Instagram", url: "https://www.instagram.com/ieeesrilanka?igsh=NDU0eTU3ZjE4czBh", icon: <Instagram className="w-5 h-5" /> },
     { name: "Linkedin", url: "https://www.linkedin.com/company/ieeesrilanka/", icon: <Linkedin className="w-5 h-5" /> }
   ];
 
