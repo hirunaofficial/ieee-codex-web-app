@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { ArrowRight, ExternalLink, ChevronUp, Facebook, Instagram, LinkedIn, Code } from 'lucide-react';
+import { ArrowRight, ExternalLink, ChevronUp, Linkedin, Facebook, Instagram, Code } from 'lucide-react';
 import Image from 'next/image';
 import GlassCard from '@/app/components/GlassCard';
 
@@ -58,7 +58,7 @@ export default function Footer() {
   const socialLinks = [
     { name: "Facebook", url: "https://www.facebook.com/share/1Bq1tN26qg/", icon: <Facebook className="w-5 h-5" /> },
     { name: "Instagram", url: "https://www.facebook.com/share/1Bq1tN26qg/", icon: <Instagram className="w-5 h-5" /> },
-    { name: "LinkedIn", url: "https://www.linkedin.com/company/ieeesrilanka/", icon: <LinkedIn className="w-5 h-5" /> }
+    { name: "Linkedin", url: "https://www.linkedin.com/company/ieeesrilanka/", icon: <Linkedin className="w-5 h-5" /> }
   ];
 
   return (
