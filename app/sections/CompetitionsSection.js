@@ -31,7 +31,7 @@ export default function CompetitionsSection() {
       timeline: "February to June 2025",
       eligibility: "Open to all Sri Lankan school students",
       logo: "/images/noi.png",
-      website: "https://www.ioi-jp.org/" // Official IOI website
+      website: "https://www.noi.lk/" // Official NOI website
     },
     {
       name: "IEEEXtreme 19.0",
