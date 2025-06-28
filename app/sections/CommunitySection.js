@@ -48,12 +48,12 @@ export default function CommunitySection() {
 
   const handleWhatsAppChannel = () => {
     // Replace with actual WhatsApp channel link
-    window.open('https://whatsapp.com/channel/your-channel-link', '_blank');
+    window.open('https://whatsapp.com/channel/0029VbB9vyIHbFV7qVYULT41', '_blank');
   };
 
   const handleDiscussionGroup = () => {
     // Replace with actual WhatsApp group link
-    window.open('https://chat.whatsapp.com/your-group-link', '_blank');
+    window.open('https://chat.whatsapp.com/LIbD4bzTGQZ5oirimM5RRL', '_blank');
   };
 
   return (
