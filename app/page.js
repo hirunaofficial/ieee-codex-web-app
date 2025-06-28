@@ -12,7 +12,7 @@ import TeamSection from '@/app/sections/TeamSection';
 import CommunitySection from '@/app/sections/CommunitySection';
 import FAQSection from '@/app/sections/FAQSection';
 import ContactSection from '@/app/sections/ContactSection';
-import Footer from '@/app/sections/Footer';
+import Footer from '@/app/components/Footer';
 
 export default function Home() {
   return (
