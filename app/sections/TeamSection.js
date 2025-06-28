@@ -97,7 +97,7 @@ export default function TeamSection() {
   // Coordinators with their corresponding images and LinkedIn
   const coordinators = [
     { name: "Hiruna Gallage", image: "/images/team/Hiruna_Gallage.jpg", linkedin: "https://www.linkedin.com/in/hirunaofficial/" },
-    { name: "Chamika Pathirana", image: "/images/team/Chamika Lakshan.png", linkedin: null },
+    { name: "Chamika Pathirana", image: "/images/team/Chamika Lakshan.png", linkedin: "https://www.linkedin.com/in/chamika-lakshan/" },
     { name: "Adeepa Shamal", image: "/images/team/adeepa wickramasinghe.jpg", linkedin: "https://www.linkedin.com/in/adeepa-shamal-5420a8282" },
     { name: "Yashodha De Silva", image: "/images/team/Yashodha De Silva.jpg", linkedin: "http://www.linkedin.com/in/yashodha-de-silva-b77581371" },
     { name: "Sasanka Wakista", image: "/images/team/SasankaWakista.jpg", linkedin: "https://www.linkedin.com/in/sasanka-wakista-4bb248206" },
