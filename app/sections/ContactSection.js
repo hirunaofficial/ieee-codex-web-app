@@ -65,7 +65,7 @@ export default function ContactSection() {
         `---\nSent from IEEE CodeX Sri Lanka Contact Form`
       );
       
-      const mailtoLink = `mailto:hirunaofficial@gmail.com?subject=${subject}&body=${body}`;
+      const mailtoLink = `mailto:thamindusri@ieee.org?subject=${subject}&body=${body}`;
       
       // Open default email client
       window.location.href = mailtoLink;
@@ -127,7 +127,7 @@ export default function ContactSection() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4 blue-glow-text">Get In Touch</h2>
           <div className="w-16 h-1 bg-blue-500 mx-auto mb-8"></div>
           <p className="text-lg text-gray-300 mb-12">
-            Click send to open your email client and send message to hirunaofficial@gmail.com
+            Click send to open your email client and send message to thamindusri@ieee.org
           </p>
           
           {/* Contact Form */}
