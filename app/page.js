@@ -12,6 +12,7 @@ import TeamSection from '@/app/sections/TeamSection';
 import CommunitySection from '@/app/sections/CommunitySection';
 import FAQSection from '@/app/sections/FAQSection';
 import ContactSection from '@/app/sections/ContactSection';
+import SponsorsSection from '@/app/sections/SponsorsSection';
 import Footer from '@/app/components/Footer';
 
 export default function Home() {
@@ -44,6 +45,9 @@ export default function Home() {
       {/* FAQ Section */}
       <FAQSection />
 
+      {/* Sponsors Section */}
+      <SponsorsSection />
+      
       {/* Contact Section */}
       <ContactSection />
 
