@@ -21,7 +21,7 @@ export const metadata = {
     description: 'Join IEEE CodeX Sri Lanka for competitive programming training and competitions.',
     url: 'https://codex.ieee.lk',
     siteName: 'IEEE CodeX Sri Lanka',
-    images: ['/images/og-image.jpg'],
+    images: ['/images/codex-logo.png'],
     locale: 'en_US',
     type: 'website',
   },
@@ -31,7 +31,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'IEEE CodeX Sri Lanka - Competitive Programming Excellence',
     description: 'Join IEEE CodeX Sri Lanka for competitive programming training and competitions.',
-    images: ['/images/twitter-card.jpg'],
+    images: ['/images/codex-logo.png'],
   },
   
   // Basic SEO
@@ -44,16 +44,42 @@ export const metadata = {
     canonical: 'https://codex.ieee.lk',
   },
   
+  // Complete favicon configuration
   icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
+    icon: [
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon.ico', sizes: 'any' }
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }
+    ],
+    other: [
+      {
+        rel: 'mask-icon',
+        url: '/safari-pinned-tab.svg',
+        color: '#1e40af'
+      }
+    ]
   },
+  
+  // Web app manifest
+  manifest: '/site.webmanifest',
 }
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        {/* Additional favicon meta tags for better browser support */}
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#1e40af" />
+        <meta name="msapplication-TileColor" content="#1e40af" />
+        <meta name="theme-color" content="#1e40af" />
+        
         {/* Essential structured data */}
         <script
           type="application/ld+json"
