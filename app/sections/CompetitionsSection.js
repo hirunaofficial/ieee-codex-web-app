@@ -39,7 +39,7 @@ export default function CompetitionsSection() {
       timeline: "July to November 2025",
       eligibility: "IEEE undergraduate and graduate members",
       logo: "/images/ieeextreme.png",
-      website: "https://ieeextreme.org/" // Official IEEEXtreme website
+      website: "https://xtreme.ieee.lk/" // Official IEEEXtreme website
     },
     {
       name: "International Collegiate Programming Contest (ICPC)",
